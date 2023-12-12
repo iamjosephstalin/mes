@@ -16,6 +16,11 @@
           "slug": "dashboard-analytics"
         },
         {
+          "url": "/table-pagination",
+          "name": "Table Pagination",
+          "slug": "table-pagination"
+        },
+        {
           "url": "https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo-1/dashboard/crm",
           "name": "CRM",
           "slug": "dashboard-crm",
@@ -468,6 +473,13 @@
       "icon": "menu-icon tf-icons bx bx-support",
       "name": "Support",
       "slug": "support",
+      "target": "_blank"
+    },
+    {
+      "url": "https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/laravel-introduction.html",
+      "icon": "menu-icon tf-icons bx bx-file",
+      "name": "Documentation",
+      "slug": "documentation",
       "target": "_blank"
     },
     {

@@ -46,6 +46,7 @@ use App\Http\Controllers\tables\Basic as TablesBasic;
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
+Route::get('/table-pagination', [Analytics::class, 'getTablePagination'])->name('table-pagination');
 
 // layout
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');

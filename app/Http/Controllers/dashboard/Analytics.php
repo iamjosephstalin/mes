@@ -11,4 +11,9 @@ class Analytics extends Controller
   {
     return view('content.dashboard.dashboards-analytics');
   }
+
+  public function getTablePagination()
+  {
+    return view('content.dashboard.table-pagination');
+  }
 }
