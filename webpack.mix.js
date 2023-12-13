@@ -103,8 +103,11 @@ mixAssetsDir('vendor/scss/**/!(_)*.scss', (src, dest) =>
 // Core javascripts
 mixAssetsDir('vendor/js/**/*.js', (src, dest) => mix.js(src, dest));
 
-mix.js('resources/assets/js/modules/table-pagination', 'public/js/modules');
-mix.js('resources/assets/js/modules/roles', 'public/js/modules');
+const jsFiles = glob.sync('resources/assets/js/modules/*.js');
+jsFiles.forEach(file => {
+  const fileName = file.split('/').pop(); // Extract the filename
+  mix.js(file, `public/js/modules/${fileName}`);
+});
 
 // Libs
 mixAssetsDir('vendor/libs/**/*.js', (src, dest) => mix.js(src, dest));

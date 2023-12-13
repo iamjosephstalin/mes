@@ -48,6 +48,29 @@
       ]
     },
     {
+      "url": "/reg-settings/currency-list",
+      "name": "Regional Settings",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "regional settings",
+      "submenu": [
+        {
+          "url": "/reg-settings/currency-list",
+          "name": "Currencies",
+          "slug": "regional settings-currencies"
+        },
+        {
+          "url": "/reg-settings/vat-rate-list",
+          "name": "VAT Rate",
+          "slug": "regional settings-vat-rate"
+        },
+        {
+          "url": "/reg-settings/unit-list",
+          "name": "Units",
+          "slug": "regional settings-units"
+        }
+      ]
+    },
+    {
       "url": "/roles",
       "name": "Roles",
       "icon": "menu-icon tf-icons bx bxs-user-account",

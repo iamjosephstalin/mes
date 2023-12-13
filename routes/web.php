@@ -42,6 +42,9 @@ use App\Http\Controllers\form_elements\BasicInput;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
+use App\Http\Controllers\regional_settings\CurrencyController;
+use App\Http\Controllers\regional_settings\UnitController;
+use App\Http\Controllers\regional_settings\VatController;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\roles\Roles as Roles;
 
@@ -120,3 +123,9 @@ Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic')
 
 // roles
 Route::get('/roles', [Roles::class, 'index'])->name('roles-list');
+
+
+// regional settings
+Route::get('/reg-settings/unit-list', [UnitController::class, 'index'])->name('unit-list');
+Route::get('/reg-settings/vat-rate-list', [VatController::class, 'index'])->name('vat-list');
+Route::get('/reg-settings/currency-list', [CurrencyController::class, 'index'])->name('currency-list');
