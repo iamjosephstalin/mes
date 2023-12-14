@@ -11,8 +11,7 @@
   <span class="text-muted fw-light">Units</span>
 </h4>
 <div class="card">
-  <h5 class="card-header">Unit List</h5>
-  <div class="table-responsive text-nowrap">
+  <div class="card-datatable table-responsive text-nowrap">
     <table class="table" id="table-unit">
       <thead>
         <tr>
