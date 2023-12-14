@@ -5,10 +5,7 @@
       "name": "Dashboards",
       "icon": "menu-icon tf-icons bx bx-home-circle",
       "slug": "dashboard",
-      "badge": [
-        "danger",
-        "5"
-      ],
+      "badge": ["danger", "5"],
       "submenu": [
         {
           "url": "/",
@@ -25,42 +22,59 @@
           "name": "CRM",
           "slug": "dashboard-crm",
           "target": "_blank",
-          "badge": [
-            "label-primary fs-tiny",
-            "Pro"
-          ]
+          "badge": ["label-primary fs-tiny", "Pro"]
         },
         {
           "url": "https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo-1/app/ecommerce/dashboard",
           "name": "eCommerce",
           "slug": "app-ecommerce-dashboard",
           "target": "_blank",
-          "badge": [
-            "label-primary fs-tiny",
-            "Pro"
-          ]
+          "badge": ["label-primary fs-tiny", "Pro"]
         },
         {
           "url": "https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo-1/app/logistics/dashboard",
           "name": "Logistics",
           "slug": "app-logistics-dashboard",
           "target": "_blank",
-          "badge": [
-            "label-primary fs-tiny",
-            "Pro"
-          ]
+          "badge": ["label-primary fs-tiny", "Pro"]
         },
         {
           "url": "https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo-1/app/academy/dashboard",
           "name": "Academy",
           "slug": "app-academy-dashboard",
           "target": "_blank",
-          "badge": [
-            "label-primary fs-tiny",
-            "Pro"
-          ]
+          "badge": ["label-primary fs-tiny", "Pro"]
         }
       ]
+    },
+    {
+      "url": "/reg-settings/currency-list",
+      "name": "Regional Settings",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "regional settings",
+      "submenu": [
+        {
+          "url": "/reg-settings/currency-list",
+          "name": "Currencies",
+          "slug": "regional settings-currencies"
+        },
+        {
+          "url": "/reg-settings/vat-rate-list",
+          "name": "VAT Rate",
+          "slug": "regional settings-vat-rate"
+        },
+        {
+          "url": "/reg-settings/unit-list",
+          "name": "Units",
+          "slug": "regional settings-units"
+        }
+      ]
+    },
+    {
+      "url": "/roles",
+      "name": "Roles",
+      "icon": "menu-icon tf-icons bx bxs-user-account",
+      "slug": "roles"
     },
     {
       "name": "Layouts",
@@ -99,10 +113,7 @@
       "name": "Front Pages",
       "icon": "menu-icon tf-icons bx bx-store",
       "slug": "front-pages",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ],
+      "badge": ["label-primary fs-tiny", "Pro"],
       "submenu": [
         {
           "url": "https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo-1/front-pages/landing",
@@ -140,10 +151,7 @@
       "name": "Laravel Crud",
       "icon": "menu-icon tf-icons bx bxl-php",
       "slug": "laravel-example",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ],
+      "badge": ["label-primary fs-tiny", "Pro"],
       "submenu": [
         {
           "url": "https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo-1/laravel/user-management",
@@ -162,10 +170,7 @@
       "icon": "menu-icon tf-icons bx bx-envelope",
       "slug": "app-email",
       "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ]
+      "badge": ["label-primary fs-tiny", "Pro"]
     },
     {
       "url": "https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo-1/app/chat",
@@ -173,10 +178,7 @@
       "icon": "menu-icon tf-icons bx bx-chat",
       "slug": "app-chat",
       "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ]
+      "badge": ["label-primary fs-tiny", "Pro"]
     },
     {
       "url": "https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo-1/app/calendar",
@@ -184,10 +186,7 @@
       "icon": "menu-icon tf-icons bx bx-calendar",
       "slug": "app-calendar",
       "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ]
+      "badge": ["label-primary fs-tiny", "Pro"]
     },
     {
       "url": "https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo-1/app/kanban",
@@ -195,10 +194,7 @@
       "icon": "menu-icon tf-icons bx bx-grid",
       "slug": "app-kanban",
       "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ]
+      "badge": ["label-primary fs-tiny", "Pro"]
     },
     {
       "name": "Account Settings",
@@ -443,10 +439,7 @@
       "name": "Form Validation",
       "slug": "form-validation",
       "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ]
+      "badge": ["label-primary fs-tiny", "Pro"]
     },
     {
       "url": "tables/basic",
@@ -460,10 +453,7 @@
       "name": "Datatables",
       "slug": "tables-datatables",
       "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ]
+      "badge": ["label-primary fs-tiny", "Pro"]
     },
     {
       "menuHeader": "Misc"
@@ -473,13 +463,6 @@
       "icon": "menu-icon tf-icons bx bx-support",
       "name": "Support",
       "slug": "support",
-      "target": "_blank"
-    },
-    {
-      "url": "https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/laravel-introduction.html",
-      "icon": "menu-icon tf-icons bx bx-file",
-      "name": "Documentation",
-      "slug": "documentation",
       "target": "_blank"
     },
     {
