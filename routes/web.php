@@ -123,7 +123,10 @@ Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic')
 
 // roles
 Route::get('/roles', [Roles::class, 'index'])->name('roles-list');
-
+Route::post('/roles/save-role', [Roles::class, 'save'])->name('save-role');
+Route::get('/roles/edit-role', [Roles::class, 'edit'])->name('edit-role');
+Route::put('/roles/update-role', [Roles::class, 'update'])->name('update-role');
+Route::delete('/roles/delete-role', [Roles::class, 'delete'])->name('delete-role');
 
 // regional settings
 Route::get('/reg-settings/unit-list', [UnitController::class, 'index'])->name('unit-list');
