@@ -7,7 +7,7 @@
       "slug": "regional settings",
       "submenu": [
         {
-          "url": "/reg-settings/currency-list",
+          "url": "/reg-settings/currencies",
           "name": "Currencies",
           "slug": "regional settings-currencies"
         },

@@ -131,4 +131,8 @@ Route::delete('/roles/delete-role', [Roles::class, 'delete'])->name('delete-role
 // regional settings
 Route::get('/reg-settings/unit-list', [UnitController::class, 'index'])->name('unit-list');
 Route::get('/reg-settings/vat-rate-list', [VatController::class, 'index'])->name('vat-list');
-Route::get('/reg-settings/currency-list', [CurrencyController::class, 'index'])->name('currency-list');
+
+//currency
+Route::resource('/reg-settings/currencies', CurrencyController::class);
+Route::post('/reg-settings/currencies/default', [CurrencyController::class, 'updateDefault'])->name('currency-update-default');
+

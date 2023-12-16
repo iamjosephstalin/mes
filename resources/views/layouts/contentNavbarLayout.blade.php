@@ -70,4 +70,5 @@ $container = ($container ?? 'container-xxl');
     <div class="drag-target"></div>
   </div>
   <!-- / Layout wrapper -->
+  @include('/content/common-popup')
   @endsection
