@@ -129,10 +129,16 @@ Route::put('/roles/update-role', [Roles::class, 'update'])->name('update-role');
 Route::delete('/roles/delete-role', [Roles::class, 'delete'])->name('delete-role');
 
 // regional settings
-Route::get('/reg-settings/unit-list', [UnitController::class, 'index'])->name('unit-list');
-Route::get('/reg-settings/vat-rate-list', [VatController::class, 'index'])->name('vat-list');
 
 //currency
 Route::resource('/reg-settings/currencies', CurrencyController::class);
 Route::post('/reg-settings/currencies/default', [CurrencyController::class, 'updateDefault'])->name('currency-update-default');
+
+//units
+Route::resource('/reg-settings/units', UnitController::class);
+Route::post('/reg-settings/units/default', [UnitController::class, 'updateDefault'])->name('unit-update-default');
+
+// vat rates
+Route::resource('/reg-settings/vat-rates', VatController::class);
+Route::post('/reg-settings/vat-rates/default', [VatController::class, 'updateDefault'])->name('vat-rate-update-default');
 

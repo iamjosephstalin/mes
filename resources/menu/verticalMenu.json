@@ -12,12 +12,12 @@
           "slug": "regional settings-currencies"
         },
         {
-          "url": "/reg-settings/vat-rate-list",
+          "url": "/reg-settings/vat-rates",
           "name": "VAT Rate",
           "slug": "regional settings-vat-rate"
         },
         {
-          "url": "/reg-settings/unit-list",
+          "url": "/reg-settings/units",
           "name": "Units",
           "slug": "regional settings-units"
         }
