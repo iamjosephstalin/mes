@@ -7,13 +7,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\UserTypes;
 
-class Roles extends Model
+class Role extends Model
 {
   use HasFactory, SoftDeletes;
+  public $timestamps = true;
   protected $table = 'roles';
   protected $primaryKey = 'id';
-  protected $fillable = ['name', 'user_type_id', 'created_by', 'updated_by'];
-
+  protected $fillable = ['role', 'user_type_id'];
+  protected $dates = ['deleted_at'];
+  protected $casts = [
+    'created_at' => 'datetime:Y-m-d H:i:s',
+    'updated_at' => 'datetime:Y-m-d H:i:s',
+    'deleted_at' => 'datetime:Y-m-d H:i:s',
+  ];
   public function userType()
   {
     return $this->belongsTo(UserTypes::class, 'user_type_id');

@@ -34,6 +34,7 @@
               <div class="form-check form-switch mb-2">
                 <input class="form-check-input default-currency" type="checkbox" {{ $currency->is_default ? "checked" :""}} data-id="{{$currency->id}}">
               </div>
+            </td>
             <td>
               <form action="{{ route('currencies.destroy', $currency->id) }}" method="post">
                 @csrf

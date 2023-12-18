@@ -12,23 +12,13 @@ return new class extends Migration {
   {
     Schema::create('roles', function (Blueprint $table) {
       $table->id();
-      $table->string('name')->unique();
+      $table->string('role');
       $table->unsignedBigInteger('user_type_id');
       $table
         ->foreign('user_type_id')
         ->references('id')
         ->on('user_types');
       $table->timestamps();
-      $table->unsignedBigInteger('created_by');
-      $table
-        ->foreign('created_by')
-        ->references('id')
-        ->on('users');
-      $table->unsignedBigInteger('updated_by');
-      $table
-        ->foreign('updated_by')
-        ->references('id')
-        ->on('users');
       $table->softDeletes();
     });
   }

@@ -46,7 +46,7 @@ use App\Http\Controllers\regional_settings\CurrencyController;
 use App\Http\Controllers\regional_settings\UnitController;
 use App\Http\Controllers\regional_settings\VatController;
 use App\Http\Controllers\tables\Basic as TablesBasic;
-use App\Http\Controllers\roles\Roles as Roles;
+use App\Http\Controllers\roles\RoleController;
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
@@ -122,17 +122,15 @@ Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('
 Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic');
 
 // roles
-Route::get('/roles', [Roles::class, 'index'])->name('roles-list');
-Route::post('/roles/save-role', [Roles::class, 'save'])->name('save-role');
-Route::get('/roles/edit-role', [Roles::class, 'edit'])->name('edit-role');
-Route::put('/roles/update-role', [Roles::class, 'update'])->name('update-role');
-Route::delete('/roles/delete-role', [Roles::class, 'delete'])->name('delete-role');
+Route::resource('/roles', RoleController::class);
 
 // regional settings
 
 //currency
 Route::resource('/reg-settings/currencies', CurrencyController::class);
-Route::post('/reg-settings/currencies/default', [CurrencyController::class, 'updateDefault'])->name('currency-update-default');
+Route::post('/reg-settings/currencies/default', [CurrencyController::class, 'updateDefault'])->name(
+  'currency-update-default'
+);
 
 //units
 Route::resource('/reg-settings/units', UnitController::class);
@@ -140,5 +138,6 @@ Route::post('/reg-settings/units/default', [UnitController::class, 'updateDefaul
 
 // vat rates
 Route::resource('/reg-settings/vat-rates', VatController::class);
-Route::post('/reg-settings/vat-rates/default', [VatController::class, 'updateDefault'])->name('vat-rate-update-default');
-
+Route::post('/reg-settings/vat-rates/default', [VatController::class, 'updateDefault'])->name(
+  'vat-rate-update-default'
+);
