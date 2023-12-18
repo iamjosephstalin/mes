@@ -28,6 +28,12 @@
       "name": "Roles",
       "icon": "menu-icon tf-icons bx bxs-user-account",
       "slug": "roles"
+    },
+    {
+      "url": "/machines-operations",
+      "name": "Machines/Operations",
+      "icon": "menu-icon tf-icons bx bxs-user-account",
+      "slug": "machines/operations"
     }
   ]
 }

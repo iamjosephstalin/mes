@@ -42,6 +42,7 @@ use App\Http\Controllers\form_elements\BasicInput;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
+use App\Http\Controllers\machines_operations\MachinesOperationsController;
 use App\Http\Controllers\regional_settings\CurrencyController;
 use App\Http\Controllers\regional_settings\UnitController;
 use App\Http\Controllers\regional_settings\VatController;
@@ -138,6 +139,7 @@ Route::post('/reg-settings/units/default', [UnitController::class, 'updateDefaul
 
 // vat rates
 Route::resource('/reg-settings/vat-rates', VatController::class);
-Route::post('/reg-settings/vat-rates/default', [VatController::class, 'updateDefault'])->name(
-  'vat-rate-update-default'
-);
+Route::post('/reg-settings/vat-rates/default', [VatController::class, 'updateDefault'])->name('vat-rate-update-default');
+
+// Machine Operations
+Route::resource('/machines-operations', MachinesOperationsController::class);

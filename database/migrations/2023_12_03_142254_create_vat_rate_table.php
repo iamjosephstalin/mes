@@ -14,7 +14,7 @@ class CreateVatRateTable extends Migration
     public function up(): void
     {
         Schema::create('vat_rate', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('vat_rate')->comment('VAT Rate');
             $table->boolean('is_default')->default(0)->comment('default flag');
             $table->timestamps();
