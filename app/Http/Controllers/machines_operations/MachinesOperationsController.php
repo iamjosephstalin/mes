@@ -13,4 +13,10 @@ class MachinesOperationsController extends Controller
       $machinesOperations = MachinesOperations::whereNull('deleted_at')->with('currency')->get();
       return view('content.machines_operations.machines-operations-index', compact('machinesOperations'));
     }
+
+    public function create()
+    {
+      return view('content.machines_operations.machines-operations-create');
+    }
+
 }

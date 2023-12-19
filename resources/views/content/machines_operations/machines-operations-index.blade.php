@@ -34,8 +34,8 @@
         @foreach($machinesOperations as $machinesOperation)
           <tr>
             <td>{{ $machinesOperation->name }}</td>
-            <td class="text-center fs-5">{!! $machinesOperation->active ? '<i class="bx bx-check text-success"></i>':'<i class="bx bx-x text-danger"></i>' !!}</td>
-            <td class="text-center fs-5">{!! $machinesOperation->end_machine ? '<i class="bx bx-check text-success"></i>':'<i class="bx bx-x text-danger"></i>' !!}</td>
+            <td class="text-center">{!! $machinesOperation->active ? 'Yes <i class="bx bx-check text-success fs-5" data-value="Yes"></i>':'No <i class="bx bx-x text-danger fs-5" data-value="No"></i>' !!}</td>
+            <td class="text-center">{!! $machinesOperation->end_machine ? 'Yes <i class="bx bx-check text-success fs-5" data-value="Yes"></i>':'No <i class="bx bx-x text-danger fs-5" data-value="No"></i>' !!}</td>
             <td>{{ $machinesOperation->work_hour_price }}</td>
             <td>{{ $machinesOperation->currency->currency_name }}</td>
             <td>

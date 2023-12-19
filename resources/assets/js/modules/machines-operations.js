@@ -100,12 +100,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 if([1,2].includes(index)){
                     const optionBooly = document.createElement('option');
-                    optionBooly.value = '1';
+                    optionBooly.value = 'Yes';
                     optionBooly.text = 'Yes';
                     select.appendChild(optionBooly);
 
                     const optionBooln = document.createElement('option');
-                    optionBooln.value = '0';
+                    optionBooln.value = 'No';
                     optionBooln.text = 'No';
                     select.appendChild(optionBooln);
                 }else{
@@ -116,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         select.appendChild(option);
                     });
                 }
-
                 const filterCell = $('<th class="text-center"></th>').appendTo(filterRow);
                 filterCell.append(select);
             } else if ([0, 3].includes(index)) {
@@ -137,15 +136,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         
         function applyFilters() {
-            table.columns().search('').draw(); // Clear existing search
-            table.columns().every(function (index) {
-                if (filters[index] !== undefined && filters[index] !== '') {
-                    this.search(filters[index]);
-                }
-            });
-            table.draw();
-        }
-
+          table.columns().search('').draw(); // Clear existing search
+          table.columns().every(function (index) {
+            const columnData = this.column(index).data().toArray();
+            if (filters[index] !== undefined && filters[index] !== '') {
+              const filterValue = filters[index];
+              this.search(filterValue);
+            }
+          });
+          table.draw();
+       }
+   
     }
 
      //for bootstrap validation
