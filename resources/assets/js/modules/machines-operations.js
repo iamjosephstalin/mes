@@ -161,4 +161,15 @@ document.addEventListener('DOMContentLoaded', function () {
            form.classList.add('was-validated')
          }, false)
      })
+
+});
+
+$('.delete-machines-operations').one('click',async function(e){
+  const isTrue = await showConfirmation('Do you want to delete this Machine/Operations?','Delete', 'Cancel');
+  if(!isTrue){
+    e.preventDefault(); 
+    e.stopPropagation();
+  }else{
+    e.target.closest('form').submit();
+  }
 });

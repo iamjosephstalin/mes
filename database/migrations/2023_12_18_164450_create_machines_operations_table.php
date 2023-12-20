@@ -17,10 +17,10 @@ return new class extends Migration
             $table->boolean('active')->default(0)->comment('active');
             $table->boolean('end_machine')->default(0)->comment('end machine');
             $table->integer('work_hour_price')->default(0)->comment('work hour price');
-            $table->unsignedBigInteger('currency_id');
+            $table->unsignedBigInteger('currency_id')->nullable();
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('no_of_shifts')->default(0)->comment('number of shifts');
-            $table->integer('hours_per_pay')->default(0)->comment('hours per pay');
+            $table->integer('no_of_shifts')->default(1)->comment('number of shifts');
+            $table->integer('hours_per_pay')->default(1)->comment('hours per pay');
             $table->longText('notes')->nullable()->comment('notes');
             $table->timestamps();
             $table->softDeletes();

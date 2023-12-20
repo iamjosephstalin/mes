@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<h4 class="py-3 mb-4"><span class="text-muted fw-light">Create/</span> Machines/Operations</h4>
+<h4 class="py-3 mb-4"><span class="text-muted fw-light">Update/</span> Machines/Operations</h4>
 <!-- Basic Layout & Basic with Icons -->
 <div class="row">
   <!-- Basic Layout -->
@@ -17,8 +17,10 @@
         <h5 class="mb-0">Basic Options</h5> <small class="text-muted float-end"></small>
       </div>
       <div class="card-body">
-        <form class="needs-validation" action="{{ route('machines-operations.store') }}" method="post"  novalidate>
+        <form class="needs-validation" action="{{ route('machines-operations.update',$machinesOperations->id) }}" method="post"  novalidate>
             @csrf
+            @method('PUT')
+
             <div class="row mb-3">
             <div class="col-md-5">
                 <div class="row">
@@ -26,7 +28,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required/>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value='{{$machinesOperations->name ? $machinesOperations->name:"-" }}' required/>
                         <div class="invalid-feedback">Please fill out the name</div>
                     </div>
                 </div>
@@ -38,8 +40,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <select id="active" name="active" class="form-select" required>
-                            <option value="0">No</option>
-                            <option value="1">Yes</option>
+                            <option value="0" {{$machinesOperations->active == '0' ? 'selected':"" }}>No</option>
+                            <option value="1" {{$machinesOperations->active == '1' ? 'selected':"" }} >Yes</option>
                         </select>
                         <div class="invalid-feedback">Please select active status</div>
                     </div>
@@ -52,8 +54,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <select id="end_machine" name="end_machine" class="form-select" required>
-                            <option value="0">No</option>
-                            <option value="1">Yes</option>
+                            <option value="0" {{$machinesOperations->end_machine == '0' ? 'selected':"" }}>No</option>
+                            <option value="1"  {{$machinesOperations->end_machine == '1' ? 'selected':"" }}>Yes</option>
                         </select>
                         <div class="invalid-feedback">Please select end machine status</div>
                     </div>
@@ -67,7 +69,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                                <textarea id="notes" class="form-control" name="notes" placeholder="This text will be shown on the production schedule to all workers" rows="3"></textarea>
+                                <textarea id="notes" class="form-control" name="notes" placeholder="This text will be shown on the production schedule to all workers" rows="3"> {{$machinesOperations->notes ? $machinesOperations->notes:"" }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -87,8 +89,8 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="work_hour_price" name="work_hour_price" />
-                                </div>
+                                <input type="text" class="form-control" id="work_hour_price" name="work_hour_price" value="{{$machinesOperations->work_hour_price ? $machinesOperations->work_hour_price:"" }}" />
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -100,7 +102,7 @@
                                 <select id="currency_id" name="currency_id" class="form-select">
                                     <option value="">Please select</option>
                                     @foreach ($currencies as $currency)
-                                    <option value={{ $currency->id}}>{{ $currency->currency_name}}</option>
+                                    <option value={{ $currency->id}} {{$machinesOperations->currency_id == $currency->id ? "selected" :""}}>{{ $currency->currency_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -114,7 +116,7 @@
                             <div class="col-sm-12">
                                 <select id="no_of_shifts" name="no_of_shifts" class="form-select" required>
                                     @for ($i = 1; $i <= 6; $i++)
-                                        <option value="{{ $i }}">{{ $i }}</option>
+                                        <option value="{{ $i }}" {{$machinesOperations->no_of_shifts == $i ? "selected" :""}}>{{ $i }}</option>
                                      @endfor
                                 </select>
                                 <div class="invalid-feedback">Please select number of shifts</div>
@@ -129,7 +131,7 @@
                             <div class="col-sm-12">
                                 <select id="hours_per_day" name="hours_per_day" class="form-select" required>
                                     @for ($i = 1; $i <= 24; $i++)
-                                        <option value="{{ $i }}">{{ $i }}</option>
+                                        <option value="{{ $i }}" {{$machinesOperations->hours_per_day == $i ? "selected" :""}}>{{ $i }}</option>
                                      @endfor
                                 </select>
                                 <div class="invalid-feedback">Please select hours per day</div>
@@ -138,6 +140,7 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" id="id" name="id" value="{{$machinesOperations->id}}"/>
             <div class="row justify-content-end my-2">
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary">save</button>

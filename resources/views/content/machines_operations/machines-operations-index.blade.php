@@ -37,13 +37,13 @@
             <td class="text-center">{!! $machinesOperation->active ? 'Yes <i class="bx bx-check text-success fs-5" data-value="Yes"></i>':'No <i class="bx bx-x text-danger fs-5" data-value="No"></i>' !!}</td>
             <td class="text-center">{!! $machinesOperation->end_machine ? 'Yes <i class="bx bx-check text-success fs-5" data-value="Yes"></i>':'No <i class="bx bx-x text-danger fs-5" data-value="No"></i>' !!}</td>
             <td>{{ $machinesOperation->work_hour_price }}</td>
-            <td>{{ $machinesOperation->currency->currency_name }}</td>
+            <td>{{ isset($machinesOperation->currency->currency_name) ? $machinesOperation->currency->currency_name :"-"  }}</td>
             <td>
               <form action="{{ route('machines-operations.destroy', $machinesOperation->id) }}" method="post">
                 @csrf
                 @method('DELETE')
 
-              <a  class="btn btn-sm btn-icon item-edit machines-operations-edit" data-id={{$machinesOperation->id}}><i class="bx bxs-edit"></i></a>
+              <a  class="btn btn-sm btn-icon item-edit machines-operations-edit" href="{{ url("/machines-operations/{$machinesOperation->id}/edit") }}" ><i class="bx bxs-edit"></i></a>
               <a type="submit" class="btn btn-sm btn-icon item-delete delete-machines-operations"><i class="bx bxs-trash"></i></a>
               </form>
             </td>
