@@ -34,6 +34,12 @@
       "name": "Machines/Operations",
       "icon": "menu-icon tf-icons bx bxs-user-account",
       "slug": "machines/operations"
+    },
+    {
+      "url": "/api-keys",
+      "name": "API Keys",
+      "icon": "menu-icon tf-icons bx bxs-user-account",
+      "slug": "api-keys"
     }
   ]
 }

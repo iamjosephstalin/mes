@@ -48,6 +48,7 @@ use App\Http\Controllers\regional_settings\UnitController;
 use App\Http\Controllers\regional_settings\VatController;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\roles\RoleController;
+use App\Http\Controllers\api_keys\ApiKeyController;
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
@@ -143,3 +144,6 @@ Route::post('/reg-settings/vat-rates/default', [VatController::class, 'updateDef
 
 // Machine Operations
 Route::resource('/machines-operations', MachinesOperationsController::class);
+
+// api keys
+Route::resource('/api-keys', ApiKeyController::class);
