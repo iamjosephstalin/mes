@@ -49,6 +49,7 @@ use App\Http\Controllers\regional_settings\VatController;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\roles\RoleController;
 use App\Http\Controllers\api_keys\ApiKeyController;
+use App\Http\Controllers\tags\TagsController;
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
@@ -147,3 +148,5 @@ Route::resource('/machines-operations', MachinesOperationsController::class);
 
 // api keys
 Route::resource('/api-keys', ApiKeyController::class);
+// Tags
+Route::resource('/tags', TagsController::class);

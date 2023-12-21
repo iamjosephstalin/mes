@@ -32,7 +32,7 @@
     {
       "url": "/machines-operations",
       "name": "Machines/Operations",
-      "icon": "menu-icon tf-icons bx bxs-user-account",
+      "icon": "menu-icon tf-icons bx bxs-time",
       "slug": "machines/operations"
     },
     {
@@ -40,6 +40,12 @@
       "name": "API Keys",
       "icon": "menu-icon tf-icons bx bxs-user-account",
       "slug": "api-keys"
+    },
+    {
+      "url": "/tags",
+      "name": "Tags",
+      "icon": "menu-icon tf-icons bx bxs-purchase-tag",
+      "slug": "tags"
     }
   ]
 }
