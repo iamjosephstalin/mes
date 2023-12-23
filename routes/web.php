@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\addtional_fields\AdditionalFieldsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
@@ -148,5 +149,9 @@ Route::resource('/machines-operations', MachinesOperationsController::class);
 
 // api keys
 Route::resource('/api-keys', ApiKeyController::class);
+
 // Tags
 Route::resource('/tags', TagsController::class);
+
+// Additional Fields
+Route::resource('/additional-fields', AdditionalFieldsController::class);

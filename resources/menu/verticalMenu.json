@@ -46,6 +46,12 @@
       "name": "Tags",
       "icon": "menu-icon tf-icons bx bxs-purchase-tag",
       "slug": "tags"
+    },
+    {
+      "url": "/additional-fields",
+      "name": "Additional Fields",
+      "icon": "menu-icon tf-icons bx bx-message-alt-add",
+      "slug": "additional-fields"
     }
   ]
 }
