@@ -52,6 +52,12 @@
       "name": "Additional Fields",
       "icon": "menu-icon tf-icons bx bx-message-alt-add",
       "slug": "additional-fields"
+    },
+    {
+      "url": "/clients",
+      "name": "Clients",
+      "icon": "menu-icon tf-icons bx bx-group",
+      "slug": "clients"
     }
   ]
 }
