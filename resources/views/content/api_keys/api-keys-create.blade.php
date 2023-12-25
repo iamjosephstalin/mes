@@ -25,32 +25,24 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <input type="checkbox" name="products" id="products">
-                    <label for="products" class="col-sm-12 col-form-label">Products</label>
-                </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="products" id="products">
+                <label class="form-check-label" for="products">Products</label>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <input type="checkbox" name="orders" id="orders">
-                    <label for="orders" class="col-sm-12 col-form-label">Orders</label>
-                </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="orders" id="orders">
+                <label class="form-check-label" for="orders">Orders</label>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <input type="checkbox" name="files" id="files">
-                    <label for="files" class="col-sm-12 col-form-label">Files</label>
-                </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="files" id="files">
+                <label class="form-check-label" for="files">Files</label>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <input type="checkbox" name="clients" id="clients">
-                    <label for="clients" class="col-sm-12 col-form-label">Clients</label>
-                </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="clients" id="clients">
+                <label class="form-check-label" for="clients">Clients</label>
             </div>
 
             <div class="row mb-3">

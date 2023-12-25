@@ -26,32 +26,24 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <input type="checkbox" name="products" id="products" @if($apiKey->products) checked @endif>
-                    <label for="products" class="col-sm-12 col-form-label">Products</label>
-                </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="products" id="products" @if($apiKey->products) checked @endif>
+                <label class="form-check-label" for="products">Products</label>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <input type="checkbox" name="orders" id="orders" @if($apiKey->orders) checked @endif>
-                    <label for="orders" class="col-sm-12 col-form-label">Orders</label>
-                </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="orders" id="orders" @if($apiKey->orders) checked @endif>
+                <label class="form-check-label" for="orders">Orders</label>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <input type="checkbox" name="files" id="files" @if($apiKey->files) checked @endif>
-                    <label for="files" class="col-sm-12 col-form-label">Files</label>
-                </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="files" id="files" @if($apiKey->files) checked @endif>
+                <label class="form-check-label" for="files">Files</label>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <input type="checkbox" name="clients" id="clients" @if($apiKey->clients) checked @endif>
-                    <label for="clients" class="col-sm-12 col-form-label">Clients</label>
-                </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="clients" id="clients" @if($apiKey->clients) checked @endif>
+                <label class="form-check-label" for="clients">Clients</label>
             </div>
 
             <div class="row mb-3">
