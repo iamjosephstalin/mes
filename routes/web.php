@@ -52,6 +52,7 @@ use App\Http\Controllers\roles\RoleController;
 use App\Http\Controllers\api_keys\ApiKeyController;
 use App\Http\Controllers\clients\ClientsController;
 use App\Http\Controllers\tags\TagsController;
+use App\Http\Controllers\users\UserController;
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
@@ -143,7 +144,9 @@ Route::post('/reg-settings/units/default', [UnitController::class, 'updateDefaul
 
 // vat rates
 Route::resource('/reg-settings/vat-rates', VatController::class);
-Route::post('/reg-settings/vat-rates/default', [VatController::class, 'updateDefault'])->name('vat-rate-update-default');
+Route::post('/reg-settings/vat-rates/default', [VatController::class, 'updateDefault'])->name(
+  'vat-rate-update-default'
+);
 
 // Machine Operations
 Route::resource('/machines-operations', MachinesOperationsController::class);
@@ -159,3 +162,6 @@ Route::resource('/additional-fields', AdditionalFieldsController::class);
 
 // Clients
 Route::resource('/clients', ClientsController::class);
+
+// Users
+Route::resource('/users', UserController::class);

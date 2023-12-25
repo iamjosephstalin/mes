@@ -11,7 +11,8 @@ class DatabaseSeeder extends Seeder
    */
   public function run(): void
   {
-    \App\Models\User::factory(30)->create();
+    $this->call([AccountTypesSeeder::class]);
+    $this->call([LanguagesSeeder::class]);
     $this->call([UserTypesSeeder::class]);
   }
 }
