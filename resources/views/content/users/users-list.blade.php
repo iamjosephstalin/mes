@@ -34,7 +34,13 @@
       <tbody class="table-border-bottom-0">
         @foreach($users as $user)
           <tr>
-            <td>{{ $user->image_path }}</td>
+            <td>
+              <div class="avatar-wrapper">
+                <div class="avatar me-2">
+                  <img src="{{isset($user->image_path) ? asset("storage/{$user->image_path}") : asset('storage/profiles/profile.jpg') }}" alt="Avatar" class="rounded-circle">
+                </div>
+              </div>
+            </td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->role }}</td>
             <td>{{ $user->email }}</td>
@@ -80,18 +86,41 @@
 <div class="modal fade" id="user-add-modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
-      <form class="needs-validation" action="{{ route('users.store') }}" method="post"  novalidate>
+      <form class="needs-validation" action="{{ route('users.store') }}" method="post" enctype="multipart/form-data"  novalidate>
         @csrf
         <div class="modal-header">
           <h5 class="modal-title">Add User</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <div class="row me-1">
+            <div class="col-md-3 mb-2">
+              <div class="avatar-wrapper">
+                <div class="avatar me-2" style="width:150px;height:150px">
+                  <img src="{{ asset('storage/profiles/profile.jpg') }}" alt="Avatar" id="profile_preview"class="rounded-circle">
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3">
+              <div class="row mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
+                <div class="invalid-feedback">Please enter the name</div>
+              </div>
+              <div class="row">
+                <input class="form-control" type="file" id="profile" name="profile">
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
-              <div class="invalid-feedback">Please enter the name</div>
+              <label for="account_type_id" class="form-label">Account type</label>
+              <select id="account_type_id" name="account_type_id" class="form-select">
+                <option value="" selected>Select account type</option>
+                @foreach($accountTypes as $accountType)
+                  <option value="{{ $accountType->id }}">{{ $accountType->name }}</option>
+                @endforeach
+              </select>
             </div>
             <div class="col mb-3">
               <label for="role" class="form-label">Role</label>
@@ -128,15 +157,6 @@
                 @endforeach
               </select>
             </div>
-            <div class="col mb-2">
-              <label for="account_type_id" class="form-label">Account type</label>
-              <select id="account_type_id" name="account_type_id" class="form-select">
-                <option value="" selected>Select account type</option>
-                @foreach($accountTypes as $accountType)
-                  <option value="{{ $accountType->id }}">{{ $accountType->name }}</option>
-                @endforeach
-              </select>
-            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -152,7 +172,7 @@
 <div class="modal fade" id="user-edit-modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
-      <form class="needs-validation" id="user-edit-form" action="{{ route('users.update', '') }}" method="post" novalidate>
+      <form class="needs-validation" id="user-edit-form" action="{{ route('users.update', '') }}" method="post" enctype="multipart/form-data" novalidate>
         @csrf
         @method('PUT')
         <div class="modal-header">
@@ -160,11 +180,34 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <div class="row me-1">
+            <div class="col-md-3 mb-1">
+              <div class="avatar-wrapper">
+                <div class="avatar me-2" style="width:150px;height:150px">
+                  <img src="{{ asset('storage/profiles/profile.jpg') }}" alt="Avatar" id="profile_preview_edit" class="rounded-circle">
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3">
+              <div class="row mb-3">
+                <label for="edit_name" class="form-label">Name</label>
+                <input type="text" id="edit_name" name="name" class="form-control" placeholder="Name" required>
+                <div class="invalid-feedback">Please enter the name</div>
+              </div>
+              <div class="row">
+                <input class="form-control" type="file" id="profile_edit" name="profile">
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col mb-3">
-              <label for="edit_name" class="form-label">Name</label>
-              <input type="text" id="edit_name" name="name" class="form-control" placeholder="Name" required>
-              <div class="invalid-feedback">Please enter the name</div>
+              <label for="edit_account_type_id" class="form-label">Account type</label>
+              <select id="edit_account_type_id" name="account_type_id" class="form-select">
+                <option value="" selected>Select account type</option>
+                @foreach($accountTypes as $accountType)
+                  <option value="{{ $accountType->id }}">{{ $accountType->name }}</option>
+                @endforeach
+              </select>
             </div>
             <div class="col mb-3">
               <label for="edit_role" class="form-label">Role</label>
@@ -198,15 +241,6 @@
                 <option value="" selected>Select default language</option>
                 @foreach($languages as $language)
                   <option value="{{ $language->id }}">{{ $language->name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="col mb-2">
-              <label for="edit_account_type_id" class="form-label">Account type</label>
-              <select id="edit_account_type_id" name="account_type_id" class="form-select">
-                <option value="" selected>Select account type</option>
-                @foreach($accountTypes as $accountType)
-                  <option value="{{ $accountType->id }}">{{ $accountType->name }}</option>
                 @endforeach
               </select>
             </div>

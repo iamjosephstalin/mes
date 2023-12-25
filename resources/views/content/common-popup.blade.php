@@ -18,3 +18,8 @@
     </div>
   </div>
   
+  <!-- Env variables -->
+  <script>
+    const baseUrl = "{{ env('BASE_URL') }}";
+  </script>
+  

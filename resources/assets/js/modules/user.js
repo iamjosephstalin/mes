@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const tableTitle = 'Users List';
     const table = new DataTable('#table-user', {
       responsive: true,
+      scrollX: true,
       dom: '<"row py-3"<"col-md-6"><"col-md-6 d-flex align-items-center justify-content-end"B>><"row"<"col-md-6"l><"col-md-6"f>>rt<"row"<"col-md-6"i><"col-md-6"p>>',
       buttons: [
         {
@@ -112,6 +113,9 @@ $('.user-edit').on('click', function () {
     $('#edit_account_type_id').val(user.account_type_id);
     $('#edit_default_language_id').val(user.default_language_id);
     $('#id').val(user.id);
+    if(user.image_path){
+       $('#profile_preview_edit').attr('src', baseUrl + '/storage/'+ user.image_path);
+    }
     $('#user-edit-modal').modal('show');
   });
 });
@@ -124,4 +128,26 @@ $('.user-delete').on('click', async function (e) {
   } else {
     e.target.closest('form').submit();
   }
+});
+
+$('#profile').on('change',function () {
+  var file = this.files[0];
+  if (file) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          $('#profile_preview').attr('src', e.target.result);
+      };
+      reader.readAsDataURL(file);
+  } 
+});
+
+$('#profile_edit').on('change',function () {
+  var file = this.files[0];
+  if (file) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          $('#profile_preview_edit').attr('src', e.target.result);
+      };
+      reader.readAsDataURL(file);
+  } 
 });

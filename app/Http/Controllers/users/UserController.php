@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\AccountTypes;
 use App\Models\Languages;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -35,6 +38,15 @@ class UserController extends Controller
   public function store(Request $request): RedirectResponse
   {
     try {
+
+      $validator = Validator::make($request->all(), [
+        'profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+      ]);
+      if ($validator->fails()) {
+        return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+      }
       $existingUser = User::whereIn('email', [$request->email])
         ->orWhere('mobile', $request->mobile)
         ->whereNull('deleted_at')
@@ -49,6 +61,12 @@ class UserController extends Controller
         return redirect()
           ->route('users.index')
           ->withErrors($errorMessage);
+      }
+      if ($request->hasFile('profile')) {
+        $now = Carbon::now();
+        $filename = $now->format('YmdHis') . '_profile.' . $request->file('profile')->extension();
+        $imagePath = $request->file('profile')->storeAs('public/profiles', $filename);
+        $request->merge(['image_path' => 'profiles/'.$filename]);
       }
       User::create($request->all());
       return redirect()
@@ -98,6 +116,17 @@ class UserController extends Controller
           ->route('users.index')
           ->withErrors($errorMessage);
       } else {
+        if ($request->hasFile('profile')) {
+          // Delete existing image if any:
+          if ($user->image_path) {
+              Storage::delete('public/' . $user->image_path);
+          }
+          $now = Carbon::now();
+          $filename = $now->format('YmdHis') . '_profile.' . $request->file('profile')->extension();
+          $imagePath = $request->file('profile')->storeAs('public/profiles', $filename);
+          $request->merge(['image_path' => 'profiles/' . $filename]);
+      }
+
         $user->update($request->all());
         return redirect()
           ->route('users.index')
