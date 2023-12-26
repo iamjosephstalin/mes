@@ -3,67 +3,68 @@
     {
       "url": "/users",
       "name": "Users",
-      "icon": "menu-icon tf-icons bx bxs-user-account",
-      "slug": "users"
+      "icon": "menu-icon tf-icons bx bxs-user",
+      "slug": "users.index"
     },
     {
       "url": "/roles",
       "name": "Roles",
-      "icon": "menu-icon tf-icons bx bxs-user-account",
-      "slug": "roles"
+      "icon": "menu-icon tf-icons bx bxs-pyramid",
+      "slug": "roles.index"
     },
     {
-      "url": "/reg-settings/currency-list",
-      "name": "Regional Settings",
-      "icon": "menu-icon tf-icons bx bx-detail",
-      "slug": "regional settings",
+      "name": "Settings",
+      "icon": "menu-icon tf-icons bx bxs-cog",
+      "slug": "settings",
       "submenu": [
         {
-          "url": "/reg-settings/currencies",
-          "name": "Currencies",
-          "slug": "regional settings-currencies"
+          "url": "/reg-settings/currency-list",
+          "name": "Regional Settings",
+          "slug": "regional settings",
+          "submenu": [
+            {
+              "url": "/reg-settings/currencies",
+              "name": "Currencies",
+              "slug": "currencies.index"
+            },
+            {
+              "url": "/reg-settings/vat-rates",
+              "name": "VAT Rate",
+              "slug": "vat-rates.index"
+            },
+            {
+              "url": "/reg-settings/units",
+              "name": "Units",
+              "slug": "units.index"
+            }
+          ]
         },
         {
-          "url": "/reg-settings/vat-rates",
-          "name": "VAT Rate",
-          "slug": "regional settings-vat-rate"
+          "url": "/machines-operations",
+          "name": "Machines/Operations",
+          "slug": "machines-operations.index"
         },
         {
-          "url": "/reg-settings/units",
-          "name": "Units",
-          "slug": "regional settings-units"
+          "url": "/api-keys",
+          "name": "API Keys",
+          "slug": "api-keys.index"
+        },
+        {
+          "url": "/tags",
+          "name": "Tags",
+          "slug": "tags.index"
+        },
+        {
+          "url": "/additional-fields",
+          "name": "Additional Fields",
+          "slug": "additional-fields.index"
+        },
+        {
+          "url": "/clients",
+          "name": "Clients",
+          "slug": "clients.index"
         }
       ]
-    },
-    {
-      "url": "/machines-operations",
-      "name": "Machines/Operations",
-      "icon": "menu-icon tf-icons bx bxs-time",
-      "slug": "machines/operations"
-    },
-    {
-      "url": "/api-keys",
-      "name": "API Keys",
-      "icon": "menu-icon tf-icons bx bxs-user-account",
-      "slug": "api-keys"
-    },
-    {
-      "url": "/tags",
-      "name": "Tags",
-      "icon": "menu-icon tf-icons bx bxs-purchase-tag",
-      "slug": "tags"
-    },
-    {
-      "url": "/additional-fields",
-      "name": "Additional Fields",
-      "icon": "menu-icon tf-icons bx bx-message-alt-add",
-      "slug": "additional-fields"
-    },
-    {
-      "url": "/clients",
-      "name": "Clients",
-      "icon": "menu-icon tf-icons bx bx-group",
-      "slug": "clients"
     }
   ]
 }
