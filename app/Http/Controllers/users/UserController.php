@@ -4,14 +4,13 @@ namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\AccountTypes;
+use App\Models\Role;
 use App\Models\Languages;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,15 +18,15 @@ class UserController extends Controller
 {
   public function index()
   {
-    $users = User::with('accountType')
+    $users = User::with('role')
       ->with('language')
       ->whereNull('deleted_at')
       ->get();
-    $accountTypes = AccountTypes::all();
+    $roles = Role::whereNull('deleted_at')->get();
     $languages = Languages::all();
     return view('content.users.users-list', [
       'users' => $users,
-      'accountTypes' => $accountTypes,
+      'roles' => $roles,
       'languages' => $languages,
     ]);
   }
@@ -38,14 +37,14 @@ class UserController extends Controller
   public function store(Request $request): RedirectResponse
   {
     try {
-
       $validator = Validator::make($request->all(), [
-        'profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+        'profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
       ]);
       if ($validator->fails()) {
-        return redirect()->back()
-            ->withErrors($validator)
-            ->withInput();
+        return redirect()
+          ->back()
+          ->withErrors($validator)
+          ->withInput();
       }
       $existingUser = User::whereIn('email', [$request->email])
         ->orWhere('mobile', $request->mobile)
@@ -66,7 +65,7 @@ class UserController extends Controller
         $now = Carbon::now();
         $filename = $now->format('YmdHis') . '_profile.' . $request->file('profile')->extension();
         $imagePath = $request->file('profile')->storeAs('public/profiles', $filename);
-        $request->merge(['image_path' => 'profiles/'.$filename]);
+        $request->merge(['image_path' => 'profiles/' . $filename]);
       }
       User::create($request->all());
       return redirect()
@@ -119,13 +118,13 @@ class UserController extends Controller
         if ($request->hasFile('profile')) {
           // Delete existing image if any:
           if ($user->image_path) {
-              Storage::delete('public/' . $user->image_path);
+            Storage::delete('public/' . $user->image_path);
           }
           $now = Carbon::now();
           $filename = $now->format('YmdHis') . '_profile.' . $request->file('profile')->extension();
           $imagePath = $request->file('profile')->storeAs('public/profiles', $filename);
           $request->merge(['image_path' => 'profiles/' . $filename]);
-      }
+        }
 
         $user->update($request->all());
         return redirect()

@@ -68,11 +68,11 @@ class RoleController extends Controller
   public function update(Request $request, Role $role): RedirectResponse
   {
     try {
-      $role = Role::where('role', $request->role)
+      $existingRole = Role::where('role', $request->role)
         ->whereNull('deleted_at')
         ->where('id', '!=', $request->id)
         ->first();
-      if ($role) {
+      if ($existingRole) {
         return redirect()
           ->route('roles.index')
           ->withErrors("'" . $request->role . "' role already exists.");

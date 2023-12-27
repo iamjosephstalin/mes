@@ -27,7 +27,6 @@
           <th>Mobile</th>
           <th>Default Language</th>
           <th>Status</th>
-          <th>Account Type</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -42,12 +41,11 @@
               </div>
             </td>
             <td>{{ $user->name }}</td>
-            <td>{{ $user->role }}</td>
+            <td>{{ $user->role->role }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->mobile }}</td>
             <td>{!! $user->language ? $user->language->name : '' !!}</td>
             <td>{!! $user->status ? '<span class="text-success">Active</span>' : '<span class="text-danger">Inactive</span>' !!}</td>
-            <td>{!! $user->accountType ? $user->accountType->name : '' !!}</td>
             <td>
               <form action="{{ route('users.destroy', $user->id) }}" method="post">
                 @csrf
@@ -114,18 +112,21 @@
           </div>
           <div class="row">
             <div class="col mb-3">
-              <label for="account_type_id" class="form-label">Account type</label>
-              <select id="account_type_id" name="account_type_id" class="form-select">
-                <option value="" selected>Select account type</option>
-                @foreach($accountTypes as $accountType)
-                  <option value="{{ $accountType->id }}">{{ $accountType->name }}</option>
+              <label for="role_id" class="form-label">Role</label>
+              <select id="role_id" name="role_id" class="form-select" required>
+                <option value="" selected>Select role</option>
+                @foreach($roles as $role)
+                  <option value="{{ $role->id }}">{{ $role->role }}</option>
                 @endforeach
               </select>
+              <div class="invalid-feedback">Please select the role</div>
             </div>
-            <div class="col mb-3">
-              <label for="role" class="form-label">Role</label>
-              <input type="text" id="role" name="role" class="form-control" placeholder="Role" required>
-              <div class="invalid-feedback">Please enter the role</div>
+            <div class="col mb-2">
+              <label for="status" class="form-label">Status</label>
+              <select id="status" name="status" class="form-select">
+                <option value="1" selected>Active</option>
+                <option value="0">Inactive</option>
+              </select>
             </div>
           </div>
           <div class="row">
@@ -136,17 +137,15 @@
             </div>
             <div class="col mb-3">
               <label for="mobile" class="form-label">Mobile</label>
-              <input type="tel" pattern="[0-9]{10}" id="mobile" name="mobile" class="form-control" placeholder="Mobile" required>
+              <input type="tel" pattern="[0-9]+" id="mobile" name="mobile" class="form-control" placeholder="Mobile" required>
               <div class="invalid-feedback">Please enter the valid mobile number</div>
             </div>
           </div>
           <div class="row">
-            <div class="col mb-2">
-              <label for="status" class="form-label">Status</label>
-              <select id="status" name="status" class="form-select">
-                <option value="1" selected>Active</option>
-                <option value="0">Inactive</option>
-              </select>
+            <div class="col mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="text" id="password" name="password" class="form-control" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
+              <div class="invalid-feedback">Please enter a valid password. It should have at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character.</div>
             </div>
             <div class="col mb-2">
               <label for="default_language_id" class="form-label">Default Language</label>
@@ -201,18 +200,21 @@
           </div>
           <div class="row">
             <div class="col mb-3">
-              <label for="edit_account_type_id" class="form-label">Account type</label>
-              <select id="edit_account_type_id" name="account_type_id" class="form-select">
+              <label for="edit_role_id" class="form-label">Account type</label>
+              <select id="edit_role_id" name="role_id" class="form-select" required>
                 <option value="" selected>Select account type</option>
-                @foreach($accountTypes as $accountType)
-                  <option value="{{ $accountType->id }}">{{ $accountType->name }}</option>
+                @foreach($roles as $role)
+                  <option value="{{ $role->id }}">{{ $role->role }}</option>
                 @endforeach
               </select>
+              <div class="invalid-feedback">Please select the role</div>
             </div>
-            <div class="col mb-3">
-              <label for="edit_role" class="form-label">Role</label>
-              <input type="text" id="edit_role" name="role" class="form-control" placeholder="Role" required>
-              <div class="invalid-feedback">Please enter the role</div>
+            <div class="col mb-2">
+              <label for="edit_status" class="form-label">Status</label>
+              <select id="edit_status" name="status" class="form-select">
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+              </select>
             </div>
           </div>
           <div class="row">
@@ -223,17 +225,15 @@
             </div>
             <div class="col mb-3">
               <label for="edit_mobile" class="form-label">Mobile</label>
-              <input type="tel" pattern="[0-9]{10}" id="edit_mobile" name="mobile" class="form-control" placeholder="Mobile" required>
+              <input type="tel" pattern="[0-9]+" id="edit_mobile" name="mobile" class="form-control" placeholder="Mobile" required>
               <div class="invalid-feedback">Please enter the valid mobile number</div>
             </div>
           </div>
           <div class="row">
-            <div class="col mb-2">
-              <label for="edit_status" class="form-label">Status</label>
-              <select id="edit_status" name="status" class="form-select">
-                <option value="1">Active</option>
-                <option value="0">Inactive</option>
-              </select>
+            <div class="col mb-3">
+              <label for="edit_password" class="form-label">Password</label>
+              <input type="text" id="edit_password" name="password" class="form-control" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
+              <div class="invalid-feedback">Please enter a valid password. It should have at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character.</div>
             </div>
             <div class="col mb-2">
               <label for="edit_default_language_id" class="form-label">Default Language</label>

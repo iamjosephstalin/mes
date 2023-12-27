@@ -13,7 +13,11 @@ return new class extends Migration {
     Schema::create('users', function (Blueprint $table) {
       $table->id();
       $table->string('name');
-      $table->string('role');
+      $table->unsignedBigInteger('role_id');
+      $table
+        ->foreign('role_id')
+        ->references('id')
+        ->on('roles');
       $table->string('email');
       $table->string('mobile');
       $table->boolean('status');
@@ -22,11 +26,7 @@ return new class extends Migration {
         ->foreign('default_language_id')
         ->references('id')
         ->on('languages');
-      $table->unsignedBigInteger('account_type_id')->nullable();
-      $table
-        ->foreign('account_type_id')
-        ->references('id')
-        ->on('account_types');
+      $table->string('password');
       $table->string('image_path')->nullable();
       $table->timestamps();
       $table->softDeletes();

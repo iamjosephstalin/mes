@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
           ]
         },
         {
-          text: '<i class="fa fa-plus"></i> Add User',
+          text: 'Add User',
           className: 'btn btn-primary ms-2',
           init: function (dt, node, config) {
             $(node).attr('data-bs-toggle', 'modal');
@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
       columns: [
         { width: '10%' },
         { width: '20%' },
-        { width: '10%' },
         { width: '10%' },
         { width: '10%' },
         { width: '10%' },
@@ -106,15 +105,15 @@ $('.user-edit').on('click', function () {
     form.attr('action', form.attr('action') + '/' + userId);
     $('#edit_image_path').val(user.image_path);
     $('#edit_name').val(user.name);
-    $('#edit_role').val(user.role);
+    $('#edit_role_id').val(user.role_id);
     $('#edit_email').val(user.email);
     $('#edit_mobile').val(user.mobile);
     $('#edit_status').val(user.status);
-    $('#edit_account_type_id').val(user.account_type_id);
+    $('#edit_password').val(user.password);
     $('#edit_default_language_id').val(user.default_language_id);
     $('#id').val(user.id);
-    if(user.image_path){
-       $('#profile_preview_edit').attr('src', baseUrl + '/storage/'+ user.image_path);
+    if (user.image_path) {
+      $('#profile_preview_edit').attr('src', baseUrl + '/storage/' + user.image_path);
     }
     $('#user-edit-modal').modal('show');
   });
@@ -130,24 +129,24 @@ $('.user-delete').on('click', async function (e) {
   }
 });
 
-$('#profile').on('change',function () {
+$('#profile').on('change', function () {
   var file = this.files[0];
   if (file) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-          $('#profile_preview').attr('src', e.target.result);
-      };
-      reader.readAsDataURL(file);
-  } 
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $('#profile_preview').attr('src', e.target.result);
+    };
+    reader.readAsDataURL(file);
+  }
 });
 
-$('#profile_edit').on('change',function () {
+$('#profile_edit').on('change', function () {
   var file = this.files[0];
   if (file) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-          $('#profile_preview_edit').attr('src', e.target.result);
-      };
-      reader.readAsDataURL(file);
-  } 
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $('#profile_preview_edit').attr('src', e.target.result);
+    };
+    reader.readAsDataURL(file);
+  }
 });

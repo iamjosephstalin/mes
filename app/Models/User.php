@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\AccountTypes;
+use App\Models\Role;
 use App\Models\Languages;
 
 class User extends Model
@@ -16,12 +16,12 @@ class User extends Model
   protected $primaryKey = 'id';
   protected $fillable = [
     'name',
-    'role',
+    'role_id',
     'email',
     'mobile',
     'status',
     'image_path',
-    'account_type_id',
+    'password',
     'default_language_id',
   ];
   protected $dates = ['deleted_at'];
@@ -30,9 +30,9 @@ class User extends Model
     'updated_at' => 'datetime:Y-m-d H:i:s',
     'deleted_at' => 'datetime:Y-m-d H:i:s',
   ];
-  public function accountType()
+  public function role()
   {
-    return $this->belongsTo(AccountTypes::class, 'account_type_id');
+    return $this->belongsTo(Role::class, 'role_id');
   }
 
   public function language()
