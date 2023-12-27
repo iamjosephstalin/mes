@@ -29,30 +29,21 @@
 
     @else
 
-    {{-- active menu method --}}
     @php
+    require_once app_path('Http/Helpers/helpers.php');
+
     $activeClass = null;
     $currentRouteName = Route::currentRouteName();
-
+    // Check if the current route is the same as the menu item
     if ($currentRouteName === $menu->slug) {
-    $activeClass = 'active';
+        $activeClass = 'active';
+    } elseif (isset($menu->submenu) && is_array($menu->submenu)) {
+       $slugsArr = getAllSlugs($menu);
+       if(in_array($currentRouteName, $slugsArr)){
+          $activeClass = 'active open';
+       }
     }
-    elseif (isset($menu->submenu)) {
-    if (gettype($menu->slug) === 'array') {
-    foreach($menu->slug as $slug){
-    if (str_contains($currentRouteName,$slug) and strpos($currentRouteName,$slug) === 0) {
-    $activeClass = 'active open';
-    }
-    }
-    }
-    else{
-    if (str_contains($currentRouteName,$menu->slug) and strpos($currentRouteName,$menu->slug) === 0) {
-    $activeClass = 'active open';
-    }
-    }
-
-    }
-    @endphp
+  @endphp
 
     {{-- main menu --}}
     <li class="menu-item {{$activeClass}}">

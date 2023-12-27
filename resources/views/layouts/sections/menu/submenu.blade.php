@@ -4,6 +4,8 @@
 
     {{-- active menu method --}}
     @php
+      require_once app_path('Http/Helpers/helpers.php');
+
       $activeClass = null;
       $active = 'active open';
       $currentRouteName = Route::currentRouteName();
@@ -11,19 +13,11 @@
       if ($currentRouteName === $submenu->slug) {
           $activeClass = 'active';
       }
-      elseif (isset($submenu->submenu)) {
-        if (gettype($submenu->slug) === 'array') {
-          foreach($submenu->slug as $slug){
-            if (str_contains($currentRouteName,$slug) and strpos($currentRouteName,$slug) === 0) {
-                $activeClass = $active;
-            }
-          }
-        }
-        else{
-          if (str_contains($currentRouteName,$submenu->slug) and strpos($currentRouteName,$submenu->slug) === 0) {
-            $activeClass = $active;
-          }
-        }
+      elseif (isset($submenu->submenu) && is_array($submenu->submenu)) {
+       $slugsArr = getAllSlugs($submenu);
+       if(in_array($currentRouteName, $slugsArr)){
+          $activeClass = 'active open';
+       }
       }
     @endphp
 
