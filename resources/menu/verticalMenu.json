@@ -65,6 +65,12 @@
           "slug": "clients.index"
         }
       ]
+    },
+    {
+      "url": "/clock-history",
+      "name": "Clock-in/out history",
+      "icon": "menu-icon tf-icons bx bxs-time-five",
+      "slug": "clock-history.index"
     }
   ]
 }

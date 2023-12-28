@@ -51,6 +51,7 @@ use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\roles\RoleController;
 use App\Http\Controllers\api_keys\ApiKeyController;
 use App\Http\Controllers\clients\ClientsController;
+use App\Http\Controllers\clock_history\ClockHistoryController;
 use App\Http\Controllers\tags\TagsController;
 use App\Http\Controllers\users\UserController;
 
@@ -165,3 +166,6 @@ Route::resource('/clients', ClientsController::class);
 
 // Users
 Route::resource('/users', UserController::class);
+
+// Users
+Route::resource('/clock-history', ClockHistoryController::class);
