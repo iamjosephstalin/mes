@@ -11,4 +11,9 @@ class ClockHistoryController extends Controller
     {
       return view('content.clock-history.clock-history-index');
     }
+
+    public function clockInOutView()
+    {
+      return view('content.clock-history.clock-in-out-index');
+    }
 }

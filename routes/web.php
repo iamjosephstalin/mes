@@ -167,5 +167,8 @@ Route::resource('/clients', ClientsController::class);
 // Users
 Route::resource('/users', UserController::class);
 
-// Users
+// Clock-history
 Route::resource('/clock-history', ClockHistoryController::class);
+Route::get('/clock-in-out', [ClockHistoryController::class, 'clockInOutView'])->name(
+  'clock-in-out-view'
+);

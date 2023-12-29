@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
           {
             extend: 'collection',
             text: 'Export',
-            className: 'btn btn-primary',
+            className: 'btn btn-primary mb-2',
             buttons: [
               {
                 extend: 'pdf',
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
           },
           {
             text: '<i class="fa fa-plus"></i> Add Machines/Operations',
-            className: 'btn btn-primary ms-2',
+            className: 'btn btn-primary ms-2 mb-2',
             action: function (dt, node, config) {
               window.location.href = '/machines-operations/create';
             }

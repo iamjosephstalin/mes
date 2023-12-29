@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
           {
             extend: 'collection',
             text: 'Export',
-            className: 'btn btn-primary',
+            className: 'btn btn-primary mb-2',
             buttons: [
               {
                 extend: 'pdf',
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
           },
           {
             text: '<i class="fa fa-plus"></i> Add additional field',
-            className: 'btn btn-primary ms-2',
+            className: 'btn btn-primary ms-2 mb-2',
             init: function (dt, node, config) {
               $(node).attr('data-bs-toggle', 'modal');
               $(node).attr('data-bs-target', '#additional-fields-create-modal');
@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         initComplete: function () {
           // $('.loading-overlay').hide();
           // $('#table-additional-fields').show()
+          $('.dt-buttons').removeClass('btn-group').addClass('d-flex justify-content-center');
         },
 
       });

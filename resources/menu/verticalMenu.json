@@ -71,6 +71,12 @@
       "name": "Clock-in/out history",
       "icon": "menu-icon tf-icons bx bxs-time-five",
       "slug": "clock-history.index"
+    },
+    {
+      "url": "/clock-in-out",
+      "name": "Clock-IN/OUT",
+      "icon": "menu-icon tf-icons bx bxs-time-five",
+      "slug": "/clock-in-out"
     }
   ]
 }

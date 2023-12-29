@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         {
           extend: 'collection',
           text: 'Export',
-          className: 'btn btn-primary',
+          className: 'btn btn-primary mb-2',
           buttons: [
             {
               extend: 'pdf',
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
           text: '<i class="fa fa-plus"></i> Add Role',
-          className: 'btn btn-primary ms-2',
+          className: 'btn btn-primary ms-2 mb-2',
           init: function (dt, node, config) {
             $(node).attr('data-bs-toggle', 'modal');
             $(node).attr('data-bs-target', '#role-add-modal');
@@ -59,7 +59,9 @@ document.addEventListener('DOMContentLoaded', function () {
       oClasses: {
         sTable: 'datatables-basic table border-top dataTable no-footer dtr-column collapsed'
       },
-      initComplete: function () {}
+      initComplete: function () {
+        $('.dt-buttons').removeClass('btn-group').addClass('d-flex justify-content-center');
+      }
     });
 
     const firstColText = document.createElement('div');
