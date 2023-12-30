@@ -13,9 +13,6 @@ use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\pages\AccountSettingsConnections;
 use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\pages\MiscUnderMaintenance;
-use App\Http\Controllers\authentications\LoginBasic;
-use App\Http\Controllers\authentications\RegisterBasic;
-use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\cards\CardBasic;
 use App\Http\Controllers\user_interface\Accordion;
 use App\Http\Controllers\user_interface\Alerts;
@@ -54,6 +51,7 @@ use App\Http\Controllers\clients\ClientsController;
 use App\Http\Controllers\clock_history\ClockHistoryController;
 use App\Http\Controllers\tags\TagsController;
 use App\Http\Controllers\users\UserController;
+use App\Http\Controllers\authentications\AuthController;
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
@@ -80,11 +78,6 @@ Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-e
 Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index'])->name(
   'pages-misc-under-maintenance'
 );
-
-// authentication
-Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
-Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
-Route::get('/auth/forgot-password-basic', [ForgotPasswordBasic::class, 'index'])->name('auth-reset-password-basic');
 
 // cards
 Route::get('/cards/basic', [CardBasic::class, 'index'])->name('cards-basic');
@@ -169,6 +162,10 @@ Route::resource('/users', UserController::class);
 
 // Clock-history
 Route::resource('/clock-history', ClockHistoryController::class);
-Route::get('/clock-in-out', [ClockHistoryController::class, 'clockInOutView'])->name(
-  'clock-in-out-view'
-);
+Route::get('/clock-in-out', [ClockHistoryController::class, 'clockInOutView'])->name('clock-in-out-view');
+
+// Authentications
+Route::get('/auth/login', [AuthController::class, 'login'])->name('auth-login');
+Route::get('/auth/register', [AuthController::class, 'register'])->name('auth-register');
+Route::get('/auth/forgot-password', [AuthController::class, 'forgotPassword'])->name('auth-forgot-password');
+Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout');
