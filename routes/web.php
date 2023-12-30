@@ -51,10 +51,9 @@ use App\Http\Controllers\clients\ClientsController;
 use App\Http\Controllers\clock_history\ClockHistoryController;
 use App\Http\Controllers\tags\TagsController;
 use App\Http\Controllers\users\UserController;
-use App\Http\Controllers\authentications\AuthController;
 
 // Main Page Route
-Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
+Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics')->middleware('auth');
 Route::get('/table-pagination', [Analytics::class, 'getTablePagination'])->name('table-pagination');
 
 // layout
@@ -121,6 +120,11 @@ Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('
 // tables
 Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic');
 
+
+//Actual Routes
+
+Route::middleware(['auth'])->group(function () {
+
 // roles
 Route::resource('/roles', RoleController::class);
 
@@ -164,8 +168,4 @@ Route::resource('/users', UserController::class);
 Route::resource('/clock-history', ClockHistoryController::class);
 Route::get('/clock-in-out', [ClockHistoryController::class, 'clockInOutView'])->name('clock-in-out-view');
 
-// Authentications
-Route::get('/auth/login', [AuthController::class, 'login'])->name('auth-login');
-Route::get('/auth/register', [AuthController::class, 'register'])->name('auth-register');
-Route::get('/auth/forgot-password', [AuthController::class, 'forgotPassword'])->name('auth-forgot-password');
-Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout');
+});

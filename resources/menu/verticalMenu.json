@@ -75,7 +75,7 @@
     {
       "url": "/clock-in-out",
       "name": "Clock-IN/OUT",
-      "icon": "menu-icon tf-icons bx bxs-time-five",
+      "icon": "menu-icon tf-icons bx bxs-timer",
       "slug": "/clock-in-out"
     }
   ]

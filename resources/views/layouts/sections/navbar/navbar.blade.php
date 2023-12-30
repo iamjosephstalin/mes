@@ -1,7 +1,6 @@
 @php
 $containerNav = $containerNav ?? 'container-fluid';
 $navbarDetached = ($navbarDetached ?? '');
-
 @endphp
 
 <!-- Navbar -->
@@ -45,23 +44,23 @@ $navbarDetached = ($navbarDetached ?? '');
 
           <!-- User -->
           <li class="nav-item navbar-dropdown dropdown-user dropdown">
-            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-target="#profile-menu">
               <div class="avatar avatar-online">
-                <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle">
+                <img src="{{ isset(auth()->user()->image_path) ? asset("storage/" . auth()->user()->image_path) : asset('storage/profiles/profile.jpg') }}" alt class="w-px-40 h-auto rounded-circle">
               </div>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end">
+            <ul class="dropdown-menu dropdown-menu-end" id="profile-menu">
               <li>
                 <a class="dropdown-item" href="javascript:void(0);">
                   <div class="d-flex">
                     <div class="flex-shrink-0 me-3">
                       <div class="avatar avatar-online">
-                        <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle">
+                        <img src="{{ isset(auth()->user()->image_path) ? asset("storage/" . auth()->user()->image_path) : asset('storage/profiles/profile.jpg') }}" alt class="w-px-40 h-auto rounded-circle">
                       </div>
                     </div>
                     <div class="flex-grow-1">
-                      <span class="fw-medium d-block">John Doe</span>
-                      <small class="text-muted">Admin</small>
+                      <span class="fw-medium d-block">{{auth()->user()->name}}</span>
+                      <small class="text-muted">{{auth()->user()->role->role}}</small>
                     </div>
                   </div>
                 </a>
@@ -69,7 +68,7 @@ $navbarDetached = ($navbarDetached ?? '');
               <li>
                 <div class="dropdown-divider"></div>
               </li>
-              <li>
+              {{-- <li>
                 <a class="dropdown-item" href="javascript:void(0);">
                   <i class="bx bx-user me-2"></i>
                   <span class="align-middle">My Profile</span>
@@ -92,13 +91,19 @@ $navbarDetached = ($navbarDetached ?? '');
               </li>
               <li>
                 <div class="dropdown-divider"></div>
-              </li>
+              </li> --}}
+              @auth
               <li>
-                <a class="dropdown-item" href="javascript:void(0);">
+                <form method="POST" action={{route('logout')}} >
+                  @csrf
+
+                <button class="dropdown-item" type="submit">
                   <i class='bx bx-power-off me-2'></i>
                   <span class="align-middle">Log Out</span>
-                </a>
+                </button>
+              </form>
               </li>
+              @endauth
             </ul>
           </li>
           <!--/ User -->
@@ -110,3 +115,4 @@ $navbarDetached = ($navbarDetached ?? '');
     @endif
   </nav>
   <!-- / Navbar -->
+

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class LanguagesSeeder extends Seeder
 {
@@ -18,6 +19,12 @@ class LanguagesSeeder extends Seeder
       ['name' => 'English', 'created_at' => now(), 'updated_at' => now()],
       ['name' => 'Español', 'created_at' => now(), 'updated_at' => now()],
     ];
-    DB::table('languages')->insert($data);
+
+    Schema::disableForeignKeyConstraints();
+    if (Schema::hasTable('languages')) {
+        DB::table('languages')->truncate();
+        DB::table('languages')->insert($data);
+    }
+    Schema::enableForeignKeyConstraints();
   }
 }

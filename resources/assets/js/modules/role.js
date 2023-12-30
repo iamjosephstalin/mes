@@ -13,7 +13,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import '@popperjs/core';
 import '@form-validation/plugin-bootstrap';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 

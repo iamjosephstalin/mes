@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Role;
 use App\Models\Languages;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+
+class User extends Authenticatable
 {
   use HasFactory, SoftDeletes;
   public $timestamps = true;
