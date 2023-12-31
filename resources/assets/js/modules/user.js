@@ -111,7 +111,7 @@ $('.user-edit').on('click', function () {
     $('#edit_email').val(user.email);
     $('#edit_mobile').val(user.mobile);
     $('#edit_status').val(user.status);
-    $('#edit_password').val(user.password);
+    // $('#edit_password').val(user.password);
     $('#edit_default_language_id').val(user.default_language_id);
     $('#id').val(user.id);
     if (user.image_path) {

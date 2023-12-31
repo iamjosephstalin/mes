@@ -61,7 +61,7 @@
             <div class="col-md-3 mb-2">
               <div class="avatar-wrapper">
                 <div class="avatar me-2" style="width:150px;height:150px">
-                  <img src="{{ asset('storage/profiles/profile.jpg') }}" alt="Avatar" id="profile_preview"class="rounded-circle">
+                  <img src="{{ asset('assets/img/avatars/profile.jpg') }}" alt="Avatar" id="profile_preview"class="rounded-circle">
                 </div>
               </div>
             </div>
@@ -143,7 +143,7 @@
             <div class="col-md-3 mb-1">
               <div class="avatar-wrapper">
                 <div class="avatar me-2" style="width:150px;height:150px">
-                  <img src="{{ asset('storage/profiles/profile.jpg') }}" alt="Avatar" id="profile_preview_edit" class="rounded-circle">
+                  <img src="{{ asset('assets/img/avatars/profile.jpg') }}" alt="Avatar" id="profile_preview_edit" class="rounded-circle">
                 </div>
               </div>
             </div>

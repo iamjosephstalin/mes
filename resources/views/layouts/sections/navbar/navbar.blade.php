@@ -46,7 +46,7 @@ $navbarDetached = ($navbarDetached ?? '');
           <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-target="#profile-menu">
               <div class="avatar avatar-online">
-                <img src="{{ isset(auth()->user()->image_path) ? asset("storage/" . auth()->user()->image_path) : asset('storage/profiles/profile.jpg') }}" alt class="w-px-40 h-auto rounded-circle">
+                <img src="{{ isset(auth()->user()->image_path) ? asset("storage/" . auth()->user()->image_path) : asset('assets/img/avatars/profile.jpg') }}" alt class="w-px-40 h-auto rounded-circle">
               </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" id="profile-menu">
@@ -55,7 +55,7 @@ $navbarDetached = ($navbarDetached ?? '');
                   <div class="d-flex">
                     <div class="flex-shrink-0 me-3">
                       <div class="avatar avatar-online">
-                        <img src="{{ isset(auth()->user()->image_path) ? asset("storage/" . auth()->user()->image_path) : asset('storage/profiles/profile.jpg') }}" alt class="w-px-40 h-auto rounded-circle">
+                        <img src="{{ isset(auth()->user()->image_path) ? asset("storage/" . auth()->user()->image_path) : asset('assets/img/avatars/profile.jpg') }}" alt class="w-px-40 h-auto rounded-circle">
                       </div>
                     </div>
                     <div class="flex-grow-1">

@@ -53,7 +53,9 @@ use App\Http\Controllers\tags\TagsController;
 use App\Http\Controllers\users\UserController;
 
 // Main Page Route
-Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics')->middleware('auth');
+Route::get('/', [Analytics::class, 'index'])
+  ->name('dashboard-analytics')
+  ->middleware('auth');
 Route::get('/table-pagination', [Analytics::class, 'getTablePagination'])->name('table-pagination');
 
 // layout
@@ -120,52 +122,49 @@ Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('
 // tables
 Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic');
 
-
 //Actual Routes
 
 Route::middleware(['auth'])->group(function () {
+  // roles
+  Route::resource('/roles', RoleController::class);
 
-// roles
-Route::resource('/roles', RoleController::class);
+  // regional settings
 
-// regional settings
+  //currency
+  Route::resource('/reg-settings/currencies', CurrencyController::class);
+  Route::post('/reg-settings/currencies/default', [CurrencyController::class, 'updateDefault'])->name(
+    'currency-update-default'
+  );
 
-//currency
-Route::resource('/reg-settings/currencies', CurrencyController::class);
-Route::post('/reg-settings/currencies/default', [CurrencyController::class, 'updateDefault'])->name(
-  'currency-update-default'
-);
+  //units
+  Route::resource('/reg-settings/units', UnitController::class);
+  Route::post('/reg-settings/units/default', [UnitController::class, 'updateDefault'])->name('unit-update-default');
 
-//units
-Route::resource('/reg-settings/units', UnitController::class);
-Route::post('/reg-settings/units/default', [UnitController::class, 'updateDefault'])->name('unit-update-default');
+  // vat rates
+  Route::resource('/reg-settings/vat-rates', VatController::class);
+  Route::post('/reg-settings/vat-rates/default', [VatController::class, 'updateDefault'])->name(
+    'vat-rate-update-default'
+  );
 
-// vat rates
-Route::resource('/reg-settings/vat-rates', VatController::class);
-Route::post('/reg-settings/vat-rates/default', [VatController::class, 'updateDefault'])->name(
-  'vat-rate-update-default'
-);
+  // Machine Operations
+  Route::resource('/machines-operations', MachinesOperationsController::class);
 
-// Machine Operations
-Route::resource('/machines-operations', MachinesOperationsController::class);
+  // api keys
+  Route::resource('/api-keys', ApiKeyController::class);
 
-// api keys
-Route::resource('/api-keys', ApiKeyController::class);
+  // Tags
+  Route::resource('/tags', TagsController::class);
 
-// Tags
-Route::resource('/tags', TagsController::class);
+  // Additional Fields
+  Route::resource('/additional-fields', AdditionalFieldsController::class);
 
-// Additional Fields
-Route::resource('/additional-fields', AdditionalFieldsController::class);
+  // Clients
+  Route::resource('/clients', ClientsController::class);
 
-// Clients
-Route::resource('/clients', ClientsController::class);
+  // Users
+  Route::resource('/users', UserController::class);
 
-// Users
-Route::resource('/users', UserController::class);
-
-// Clock-history
-Route::resource('/clock-history', ClockHistoryController::class);
-Route::get('/clock-in-out', [ClockHistoryController::class, 'clockInOutView'])->name('clock-in-out-view');
-
+  // Clock-history
+  Route::resource('/clock-history', ClockHistoryController::class);
+  Route::get('/clock-in-out', [ClockHistoryController::class, 'clockInOutView'])->name('clock-in-out-view');
 });

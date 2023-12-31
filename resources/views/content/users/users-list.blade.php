@@ -36,7 +36,7 @@
             <td>
               <div class="avatar-wrapper">
                 <div class="avatar me-2">
-                  <img src="{{isset($user->image_path) ? asset("storage/{$user->image_path}") : asset('storage/profiles/profile.jpg') }}" alt="Avatar" class="rounded-circle">
+                  <img src="{{isset($user->image_path) ? asset("storage/{$user->image_path}") : asset('assets/img/avatars/profile.jpg') }}" alt="Avatar" class="rounded-circle">
                 </div>
               </div>
             </td>
@@ -95,7 +95,7 @@
             <div class="col-md-3 mb-2">
               <div class="avatar-wrapper">
                 <div class="avatar me-2" style="width:150px;height:150px">
-                  <img src="{{ asset('storage/profiles/profile.jpg') }}" alt="Avatar" id="profile_preview"class="rounded-circle">
+                  <img src="{{ asset('assets/img/avatars/profile.jpg') }}" alt="Avatar" id="profile_preview"class="rounded-circle">
                 </div>
               </div>
             </div>
@@ -147,7 +147,7 @@
               <input type="text" id="password" name="password" class="form-control" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
               <div class="invalid-feedback">Please enter a valid password. It should have at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character.</div>
             </div>
-            <div class="col mb-2">
+            <div class="col mb-3">
               <label for="default_language_id" class="form-label">Default Language</label>
               <select id="default_language_id" name="default_language_id" class="form-select">
                 <option value="" selected>Select default language</option>
@@ -183,7 +183,7 @@
             <div class="col-md-3 mb-1">
               <div class="avatar-wrapper">
                 <div class="avatar me-2" style="width:150px;height:150px">
-                  <img src="{{ asset('storage/profiles/profile.jpg') }}" alt="Avatar" id="profile_preview_edit" class="rounded-circle">
+                  <img src="{{ asset('assets/img/avatars/profile.jpg') }}" alt="Avatar" id="profile_preview_edit" class="rounded-circle">
                 </div>
               </div>
             </div>
@@ -230,12 +230,12 @@
             </div>
           </div>
           <div class="row">
-            <div class="col mb-3">
+            <!-- <div class="col mb-3">
               <label for="edit_password" class="form-label">Password</label>
               <input type="text" id="edit_password" name="password" class="form-control" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
               <div class="invalid-feedback">Please enter a valid password. It should have at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character.</div>
-            </div>
-            <div class="col mb-2">
+            </div> -->
+            <div class="col-md-6 mb-3">
               <label for="edit_default_language_id" class="form-label">Default Language</label>
               <select id="edit_default_language_id" name="default_language_id" class="form-select">
                 <option value="" selected>Select default language</option>

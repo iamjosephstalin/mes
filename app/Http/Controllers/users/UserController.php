@@ -13,6 +13,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -61,13 +62,22 @@ class UserController extends Controller
           ->route('users.index')
           ->withErrors($errorMessage);
       }
+      $newUser = new User([
+        'name' => $request->name,
+        'role_id' => $request->role_id,
+        'email' => $request->email,
+        'mobile' => $request->mobile,
+        'status' => $request->status,
+        'default_language_id' => $request->default_language_id,
+        'password' => Hash::make($request->password),
+      ]);
       if ($request->hasFile('profile')) {
         $now = Carbon::now();
         $filename = $now->format('YmdHis') . '_profile.' . $request->file('profile')->extension();
         $imagePath = $request->file('profile')->storeAs('public/profiles', $filename);
-        $request->merge(['image_path' => 'profiles/' . $filename]);
+        $newUser->image_path = 'profiles/' . $filename;
       }
-      User::create($request->all());
+      $newUser->save();
       return redirect()
         ->route('users.index')
         ->withSuccess('New user has been added');
@@ -125,7 +135,6 @@ class UserController extends Controller
           $imagePath = $request->file('profile')->storeAs('public/profiles', $filename);
           $request->merge(['image_path' => 'profiles/' . $filename]);
         }
-
         $user->update($request->all());
         return redirect()
           ->route('users.index')
