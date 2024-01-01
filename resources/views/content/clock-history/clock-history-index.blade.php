@@ -1,15 +1,14 @@
 @extends('layouts/contentNavbarLayout')
 
-@section('title', 'Clock-in/Clock-out history')
+@section('title', 'Clock-in/Clock-out History')
 
 @section('page-script')
 <script type="module" src="{{ mix('js/modules/clock-history.js') }}"></script>
 @endsection
 
-
 @section('content')
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Clock-in/Clock-out history</span>
+  <span class="text-muted fw-light">Clock-in/Clock-out History</span>
 </h4>
 <div class="card" id="clock-history-list">
   <div class="card-datatable table-responsive text-nowrap">
@@ -28,18 +27,29 @@
           <th>Pause time [h:m:s]</th>
           <th>Number of pauses</th>
           <th>Comment</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
+        @foreach($histories as $history)
           <tr>
-            <td>Asia Kasprzyk</td>
-            <td>2023-12-27 04:25:22</td>
-            <td>2023-12-28 16:35:44</td>
-            <td>36:10:22</td>
-            <td>36:09:49</td>
-            <td>3</td>
-            <td>No comments yet</td>
+            <td>{{ $history->user->name }}</td>
+            <td>{{ $history->clock_in }}</td>
+            <td>{{ $history->clock_out }}</td>
+            <td>{{ $history->working_time }}</td>
+            <td>{{ $history->pause_time }}</td>
+            <td>{{ $history->number_of_pauses }}</td>
+            <td>{{ $history->clock_in_comment }}</td>
+            <td>
+              <form action="{{ route('clock-history.destroy', $history->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <a type="button" class="btn btn-sm btn-icon item-edit history-edit" data-id="{{ $history->id }}"><i class="bx bxs-edit"></i></a>
+                <a type="submit" class="btn btn-sm btn-icon item-delete history-delete"><i class="bx bxs-trash"></i></a>
+              </form>
+            </td>
           </tr>
+        @endforeach
       </tbody>
     </table>
   </div>
@@ -69,55 +79,51 @@
 <div class="modal fade" id="clock-history-create-modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <form class="needs-validation" action="{{ route('currencies.store') }}" method="post"  novalidate>
+      <form class="needs-validation" action="{{ route('clock-history.store') }}" method="post" novalidate>
         @csrf
-        
         <div class="modal-header">
-          <h5 class="modal-title">Add Clock-IN/OUT</h5>
+          <h5 class="modal-title">Add Clock-in/Clock-out</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="row">
-                <div class="col mb-3">
-                <div class="row">
-                    <label class="col-sm-12 col-form-label" for="worker">Worker</label>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <select id="worker" name="worker" class="form-select" required>
-                            <option value="0">Guru</option>
-                            <option value="1">Shaju</option>
-                        </select>
-                        <div class="invalid-feedback">Please select the worker name</div>
-                    </div>
-                </div>
-                </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label class="form-label" for="user_id">Worker</label>
+              <select id="user_id" name="user_id" class="form-select" required>
+                <option value="" selected>Select worker</option>
+                @foreach($users as $user)
+                  <option value="{{ $user->id }}">{{ $user->name }}</option>
+                @endforeach
+              </select>
+              <div class="invalid-feedback">Please select the worker</div>
             </div>
-            <div class="row">
-                <div class="col mb-3">
-                <label for="clock_in" class="form-label">Clock-in</label>
-                <input type="datetime-local" id="clock_in" name="clock_in" class="form-control" placeholder="Clock-in">
-                </div>
+          </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="clock_in" class="form-label">Clock-in</label>
+              <input type="datetime-local" step="1" id="clock_in" name="clock_in" class="form-control" placeholder="Clock-in" required>
+              <div class="invalid-feedback">Please select the clock-in time</div>
             </div>
-            <div class="row">
-                <div class="col mb-3">
-                <label for="clock_out" class="form-label">Clock-out</label>
-                <input type="datetime-local" id="clock_out" name="clock_out" class="form-control" placeholder="Clock-out">
-                </div>
+          </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="clock_out" class="form-label">Clock-out</label>
+              <input type="datetime-local" step="1" id="clock_out" name="clock_out" class="form-control" placeholder="Clock-out" required>
+              <div class="invalid-feedback">Please select the clock-out time</div>
             </div>
-            <div class="row">
-                <div class="col mb-3">
-                <label for="comment" class="form-label">Comment</label>
-                <textarea type="text" id="comment" name="comment" class="form-control" placeholder="comment" rows="3"></textarea>
-                </div>
+          </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="clock_in_comment" class="form-label">Comment</label>
+              <textarea type="text" id="clock_in_comment" name="clock_in_comment" class="form-control" placeholder="Comment" rows="3"></textarea>
             </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
-      </div>
     </div>
   </div>
 </div>
@@ -126,48 +132,46 @@
 <div class="modal fade" id="clock-history-edit-modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <form class="needs-validation" id="clock-history-edit-form" action="{{ route('currencies.update', '') }}" method="post"  novalidate>
+      <form class="needs-validation" id="clock-history-edit-form" action="{{ route('clock-history.update', '') }}" method="post" novalidate>
         @csrf
         @method('PUT')
         <div class="modal-header">
-          <h5 class="modal-title">Edit Clock-IN/OUT</h5>
+          <h5 class="modal-title">Edit Clock-in/Clock-out</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="row">
-                <div class="col mb-3">
-                <div class="row">
-                    <label class="col-sm-12 col-form-label" for="worker_edit">Worker</label>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <select id="worker_edit" name="worker" class="form-select" required>
-                            <option value="0">Guru</option>
-                            <option value="1">Shaju</option>
-                        </select>
-                        <div class="invalid-feedback">Please select the worker name</div>
-                    </div>
-                </div>
-                </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label class="form-label" for="edit_user_id">Worker</label>
+              <select id="edit_user_id" name="user_id" class="form-select" required>
+                <option value="" selected>Select worker</option>
+                @foreach($users as $user)
+                  <option value="{{ $user->id }}">{{ $user->name }}</option>
+                @endforeach
+              </select>
+              <div class="invalid-feedback">Please select the worker</div>
             </div>
-            <div class="row">
-                <div class="col mb-3">
-                <label for="clock_in_edit" class="form-label">Clock-in</label>
-                <input type="datetime-local" id="clock_in_edit" name="clock_in" class="form-control" placeholder="Clock-in">
-                </div>
+          </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="edit_clock_in" class="form-label">Clock-in</label>
+              <input type="datetime-local" step="1" id="edit_clock_in" name="clock_in" class="form-control" placeholder="Clock-in" required>
+              <div class="invalid-feedback">Please select the clock-in time</div>
             </div>
-            <div class="row">
-                <div class="col mb-3">
-                <label for="clock_out_edit" class="form-label">Clock-out</label>
-                <input type="datetime-local" id="clock_out_edit" name="clock_out" class="form-control" placeholder="Clock-out">
-                </div>
+          </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="edit_clock_out" class="form-label">Clock-out</label>
+              <input type="datetime-local" step="1" id="edit_clock_out" name="clock_out" class="form-control" placeholder="Clock-out" required>
+              <div class="invalid-feedback">Please select the clock-out time</div>
             </div>
-            <div class="row">
-                <div class="col mb-3">
-                <label for="comment_edit" class="form-label">Comment</label>
-                <textarea type="text" id="comment_edit" name="comment" class="form-control" placeholder="comment" rows="3"></textarea>
-                </div>
+          </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="edit_clock_in_comment" class="form-label">Comment</label>
+              <textarea type="text" id="edit_clock_in_comment" name="clock_in_comment" class="form-control" placeholder="Comment" rows="3"></textarea>
             </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
@@ -175,7 +179,6 @@
         </div>
         <input type="hidden" id="id" name="id" value=""/>
       </form>
-      </div>
     </div>
   </div>
 </div>

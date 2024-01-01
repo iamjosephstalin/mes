@@ -68,7 +68,7 @@
     },
     {
       "url": "/clock-history",
-      "name": "Clock-in/out history",
+      "name": "Clock-in/Clock-out History",
       "icon": "menu-icon tf-icons bx bxs-time-five",
       "slug": "clock-history.index"
     },

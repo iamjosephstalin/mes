@@ -7,7 +7,6 @@
   <span class="text-muted fw-light">Clock-IN/OUT</span>
 </h4>
 <div class="card">
-    
   <div class="row">
     <div class="col-md-6 ">
         <div class="d-grid gap-3  mx-3 my-5">
