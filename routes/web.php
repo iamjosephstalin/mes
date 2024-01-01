@@ -51,6 +51,7 @@ use App\Http\Controllers\clients\ClientsController;
 use App\Http\Controllers\clock_history\ClockHistoryController;
 use App\Http\Controllers\tags\TagsController;
 use App\Http\Controllers\users\UserController;
+use App\Http\Controllers\users\UserDashboardController;
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])
@@ -163,6 +164,9 @@ Route::middleware(['auth'])->group(function () {
 
   // Users
   Route::resource('/users', UserController::class);
+
+   // Users
+   Route::resource('/user-dashboard', UserDashboardController::class);
 
   // Clock-history
   Route::resource('/clock-history', ClockHistoryController::class);

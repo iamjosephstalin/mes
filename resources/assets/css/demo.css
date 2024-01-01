@@ -122,3 +122,45 @@
   text-align: center;
   margin-top: 1rem;
 }
+
+/* CSS Begins */
+
+.product-stop-btn-primary{
+  width: 66px;
+  font-size: 10px;
+  background-color: #1d1d1d;
+  color: #fff;
+  border: 1px solid #ccc;
+  outline: none;
+  text-align: justify;
+}
+
+.product-stop-btn-secondary{
+  width: 66px;
+  font-size: 10px;
+  background-color: #475069;
+  color: #fff;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+.header-product{
+  font-size: 12px;
+  font-weight: bold;
+}
+.sub-header-product{
+  font-size: 10px;
+}
+.product-specifics{
+  font-size: 10px;
+  font-weight: bold;
+}
+.product-dark{
+  background-color: #111d28!important;
+  color: #ccc!important;
+}
+.product-pending {
+  background-color:#475069 ;
+  font-size: 13px;
+}

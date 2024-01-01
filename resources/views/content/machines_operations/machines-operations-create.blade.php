@@ -74,7 +74,7 @@
             </div>
             <div class="d-flex justify-content-start column-gap-2 mb-3 mt-4">
                 <h5 class="mb-2">Advanced Options</h5>
-                <button type="button" class="btn btn-primary btn-icon square-pill dropdown-toggle hide-arrow" style="width: 25px;height:25px" data-bs-toggle="collapse" data-bs-target="#advanceOption" aria-expanded="false" aria-controls="advanceOption">
+                <button type="button" class="btn btn-primary btn-icon square-pill dropdown-toggle hide-arrow" id="advanceOptionBtn" style="width: 25px;height:25px" data-bs-toggle="collapse" data-bs-target="#advanceOption" aria-expanded="false" aria-controls="advanceOption">
                     <i class='bx bx-chevron-down' ></i>
                 </button>
             </div>

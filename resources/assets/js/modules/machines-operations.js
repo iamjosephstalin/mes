@@ -162,6 +162,15 @@ document.addEventListener('DOMContentLoaded', function () {
          }, false)
      })
 
+     let collapseButton = document.getElementById("advanceOptionBtn");
+      collapseButton.addEventListener("click", function() {
+          if (collapseButton.getAttribute("aria-expanded") == "true") {
+              $(this).find("i").removeClass("bx-chevron-down").addClass("bx-chevron-up"); // Change to desired icon
+          } else {
+            $(this).find("i").removeClass("bx-chevron-up").addClass("bx-chevron-down");// Change back
+          }
+      });
+
 });
 
 $('.delete-machines-operations').one('click',async function(e){
@@ -173,3 +182,5 @@ $('.delete-machines-operations').one('click',async function(e){
     e.target.closest('form').submit();
   }
 });
+
+
