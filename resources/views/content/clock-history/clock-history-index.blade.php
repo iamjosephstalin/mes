@@ -175,7 +175,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-primary">Update</button>
         </div>
         <input type="hidden" id="id" name="id" value=""/>
       </form>

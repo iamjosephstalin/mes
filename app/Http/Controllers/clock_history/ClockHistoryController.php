@@ -5,11 +5,14 @@ namespace App\Http\Controllers\clock_history;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\ClockHistory;
+use App\Models\ClockPauseHistory;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Exception;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class ClockHistoryController extends Controller
 {
@@ -29,7 +32,7 @@ class ClockHistoryController extends Controller
    */
   public function store(Request $request): RedirectResponse
   {
-    if ($request->has('clock_out')) {
+    if ($request->has('clock_in') && $request->has('clock_out')) {
       $clockIn = Carbon::parse($request->input('clock_in'));
       $clockOut = Carbon::parse($request->input('clock_out'));
       $difference = $clockIn->diff($clockOut);
@@ -40,11 +43,18 @@ class ClockHistoryController extends Controller
         $difference->s
       );
       $request->merge(['working_time' => $formattedDifference]);
+      $route = 'clock-history.index';
+      $msg = 'New Clock-in/Clock-out history has been added';
+    } else {
+      $clockIn = date('Y-m-d H:i:s');
+      $request->merge(['clock_in' => $clockIn, 'in_work' => true]);
+      $route = 'clock-in-out-view';
+      $msg = 'Work started.';
     }
     ClockHistory::create($request->all());
     return redirect()
-      ->route('clock-history.index')
-      ->withSuccess('New Clock-in/Clock-out history has been added');
+      ->route($route)
+      ->withSuccess($msg);
   }
 
   /**
@@ -68,24 +78,35 @@ class ClockHistoryController extends Controller
   public function update(Request $request, ClockHistory $clockHistory): RedirectResponse
   {
     try {
-      if ($request->has('clock_out')) {
+      if ($request->has(['clock_in', 'clock_out'])) {
         $clockIn = Carbon::parse($request->input('clock_in'));
         $clockOut = Carbon::parse($request->input('clock_out'));
-        $difference = $clockIn->diff($clockOut);
-        $formattedDifference = sprintf(
-          '%02d:%02d:%02d',
-          $difference->h + $difference->days * 24,
-          $difference->i,
-          $difference->s
-        );
-        $request->merge(['working_time' => $formattedDifference]);
+        $route = 'clock-history.index';
+        $msg = 'Clock-in/Clock-out history has been updated';
+      } else {
+        $now = now();
+        $clockIn = Carbon::parse($clockHistory->clock_in);
+        $clockOut = $now;
+        $request->merge(['in_work' => false, 'clock_out' => $now]);
+        $route = 'clock-in-out-view';
+        $msg = 'Work stopped.';
       }
+      $difference = $clockIn->diff($clockOut);
+      $formattedDifference = sprintf(
+        '%02d:%02d:%02d',
+        $difference->h + $difference->days * 24,
+        $difference->i,
+        $difference->s
+      );
+      $request->merge(['working_time' => $formattedDifference]);
       $clockHistory->update($request->all());
       return redirect()
-        ->route('clock-history.index')
-        ->withSuccess('Clock-in/Clock-out history has been updated');
+        ->route($route)
+        ->withSuccess($msg);
     } catch (Exception $e) {
-      return response()->json(['error' => 'An error occurred'], 500);
+      return redirect()
+        ->route($route)
+        ->withErrors('An error occurred while updating the Clock-in/Clock-out history.');
     }
   }
 
@@ -103,5 +124,136 @@ class ClockHistoryController extends Controller
   public function clockInOutView()
   {
     return view('content.clock-history.clock-in-out-index');
+  }
+
+  /**
+   * Show the form for user to clock in.
+   */
+  public function clockIn(): JsonResponse
+  {
+    try {
+      $loginUserId = auth()->user()->id;
+      $hasHistory = ClockHistory::where('in_work', true)
+        ->where('user_id', $loginUserId)
+        ->whereNull('deleted_at')
+        ->exists();
+      $responseData = [
+        'hasHistory' => $hasHistory,
+      ];
+      return response()->json($responseData, 200);
+    } catch (Exception $e) {
+      return response()->json(['error' => 'An error occurred'], 500);
+    }
+  }
+
+  /**
+   * Show the form for user to clock out.
+   */
+  public function clockOut(): JsonResponse
+  {
+    try {
+      $loginUserId = auth()->user()->id;
+      $history = ClockHistory::where('in_work', true)
+        ->where('user_id', $loginUserId)
+        ->whereNull('deleted_at')
+        ->orderBy('id', 'desc')
+        ->first();
+      $responseData = [
+        'clockHistory' => $history,
+      ];
+      return response()->json($responseData, 200);
+    } catch (Exception $e) {
+      return response()->json(['error' => 'An error occurred'], 500);
+    }
+  }
+
+  /**
+   * Show the form for user to pause work.
+   */
+  public function pauseWork(): JsonResponse
+  {
+    try {
+      $loginUserId = auth()->user()->id;
+      $clockHistory = ClockHistory::where('in_work', true)
+        ->where('user_id', $loginUserId)
+        ->whereNull('deleted_at')
+        ->orderBy('id', 'desc')
+        ->first();
+      $clockPauseHistory = null;
+      if ($clockHistory->in_pause) {
+        $clockPauseHistory = ClockPauseHistory::where('clock_history_id', $clockHistory->id)
+          ->whereNull('deleted_at')
+          ->orderBy('id', 'desc')
+          ->first();
+      }
+      $responseData = [
+        'clockHistory' => $clockHistory,
+        'clockPauseHistory' => $clockPauseHistory,
+      ];
+      return response()->json($responseData, 200);
+    } catch (Exception $e) {
+      return response()->json(['error' => 'An error occurred'], 500);
+    }
+  }
+
+  /**
+   * Start the pause.
+   */
+  public function startPause(Request $request): RedirectResponse
+  {
+    try {
+      ClockPauseHistory::create([
+        'clock_history_id' => $request->clock_history_id,
+        'pause_start' => now(),
+        'reason' => $request->reason,
+      ]);
+      $history = ClockHistory::find($request->clock_history_id);
+      $history->update([
+        'in_pause' => true,
+        'number_of_pauses' => $history->number_of_pauses + 1,
+      ]);
+      return redirect()
+        ->route('clock-in-out-view')
+        ->withSuccess('Paused the work.');
+    } catch (Exception $e) {
+      return redirect()
+        ->route('clock-in-out-view')
+        ->withErrors('An error occurred while pausing the work.');
+    }
+  }
+
+  /**
+   * Start the pause.
+   */
+  public function endPause(Request $request): RedirectResponse
+  {
+    try {
+      $now = now();
+      $clockPauseHistory = ClockPauseHistory::find($request->clock_pause_history_id);
+      $pauseStart = Carbon::parse($clockPauseHistory->pause_start);
+      $pauseStop = $now;
+      $difference = $pauseStart->diff($pauseStop);
+      $formattedDifference = sprintf(
+        '%02d:%02d:%02d',
+        $difference->h + $difference->days * 24,
+        $difference->i,
+        $difference->s
+      );
+      $clockPauseHistory->update([
+        'pause_stop' => $now,
+        'pause_time' => $formattedDifference,
+      ]);
+      $history = ClockHistory::find($request->clock_history_id);
+      $history->update([
+        'in_pause' => false,
+      ]);
+      return redirect()
+        ->route('clock-in-out-view')
+        ->withSuccess('Resumed the work.');
+    } catch (Exception $e) {
+      return redirect()
+        ->route('clock-in-out-view')
+        ->withErrors('An error occurred while finishing the pause.');
+    }
   }
 }

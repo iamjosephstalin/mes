@@ -200,9 +200,9 @@
           </div>
           <div class="row">
             <div class="col mb-3">
-              <label for="edit_role_id" class="form-label">Account type</label>
+              <label for="edit_role_id" class="form-label">Role</label>
               <select id="edit_role_id" name="role_id" class="form-select" required>
-                <option value="" selected>Select account type</option>
+                <option value="" selected>Select role</option>
                 @foreach($roles as $role)
                   <option value="{{ $role->id }}">{{ $role->role }}</option>
                 @endforeach

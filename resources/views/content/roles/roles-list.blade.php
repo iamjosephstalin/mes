@@ -68,7 +68,7 @@
 <div class="modal fade" id="role-add-modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <form class="needs-validation" action="{{ route('roles.store') }}" method="post"  novalidate>
+      <form class="needs-validation" action="{{ route('roles.store') }}" method="post" novalidate>
         @csrf
         <div class="modal-header">
           <h5 class="modal-title">Add Role</h5>

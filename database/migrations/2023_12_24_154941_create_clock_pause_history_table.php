@@ -20,7 +20,7 @@ return new class extends Migration {
       $table->timestamp('pause_start');
       $table->timestamp('pause_stop')->nullable(true);
       $table->string('pause_time')->nullable(true);
-      $table->string('reason')->nullable(true);
+      $table->string('reason');
       $table->string('comment')->nullable(true);
       $table->timestamps();
       $table->softDeletes();

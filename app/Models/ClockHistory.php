@@ -20,6 +20,8 @@ class ClockHistory extends Model
     'working_time',
     'pause_time',
     'number_of_pauses',
+    'in_pause',
+    'in_work',
     'clock_in_comment',
     'clock_out_comment',
   ];
