@@ -25,7 +25,13 @@
   @include('layouts/sections/scriptsIncludes')
 </head>
 
-<body>
+@php
+
+$overflow = ($overflow ?? "");
+
+@endphp
+
+<body {{$overflow}}>
   
 
   <!-- Layout Content -->
