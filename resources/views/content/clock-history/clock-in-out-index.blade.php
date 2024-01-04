@@ -1,11 +1,11 @@
 @php
-$isMenu = false;
-$navbarHideToggle = false;
-$isNavbar = false;
-$container = 'container-fluid p-0';
-$containerNav = 'container-fluid';
-$isContainerPad = false;
-$overflow = "style=overflow:hidden"
+  $isMenu = auth()->user()->role->user_type_id == 1 ? true : false;
+  $navbarHideToggle = false;
+  $isNavbar = false;
+  $container = 'container-fluid p-0';
+  $containerNav = 'container-fluid';
+  $isContainerPad = false;
+  $overflow = "style=overflow:hidden"
 @endphp
 
 @extends('layouts/contentNavbarLayout')
@@ -13,7 +13,7 @@ $overflow = "style=overflow:hidden"
 @section('title', 'Clock-IN/OUT')
 
 @section('page-script')
-<script type="module" src="{{ mix('js/modules/clock-in-out.js') }}"></script>
+  <script type="module" src="{{ mix('js/modules/clock-in-out.js') }}"></script>
 @endsection
 
 @section('content')
@@ -27,11 +27,11 @@ $overflow = "style=overflow:hidden"
   </div>
   <div class="row w-100" style="height: 100vh">
     <div class="col-md-6" style="padding-top: 5%;">
-        <div class="d-grid gap-4 p-5">
-            <button type="button" class="btn btn-success py-4 fs-5" style="background-color:#168d42" data-bs-toggle="offcanvas" data-bs-target="#clockInCanvas" ><i class='bx bx-play-circle fs-3 me-1'></i>CLOCK-IN</button>
-            <button type="button" class="btn btn-warning py-4 fs-5" data-bs-toggle="offcanvas" data-bs-target="#pauseWorkCanvas" ><i class='bx bx-pause-circle fs-3 me-1' ></i>PAUSE WORK</button>
-            <button type="button" class="btn btn-danger py-4 fs-5"  style="background-color:#cb361c" data-bs-toggle="offcanvas" data-bs-target="#clockOutCanvas" ><i class='bx bx-stop-circle fs-3 me-1' ></i>CLOCK-OUT</button>
-        </div>
+      <div class="d-grid gap-4 p-5">
+        <button type="button" class="btn btn-success py-4 fs-5" style="background-color:#168d42" id="clockInCanvasBtn"><i class='bx bx-play-circle fs-3 me-1'></i>CLOCK-IN</button>
+        <button type="button" class="btn btn-secondary py-4 fs-5" id="pauseWorkCanvasBtn"><i class='bx bx-pause-circle fs-3 me-1'></i>PAUSE WORK</button>
+        <button type="button" class="btn btn-danger py-4 fs-5" style="background-color:#cb361c" id="clockOutCanvasBtn"><i class='bx bx-stop-circle fs-3 me-1'></i>CLOCK-OUT</button>
+      </div>
     </div>
     <div class="col-md-6" style="box-shadow:-6px 0 10px -4px #999">
       <div class="row">
@@ -45,76 +45,55 @@ $overflow = "style=overflow:hidden"
           </h6>
         </div>
       </div>
-        <dt style="font-size: 12px;font-weight:bold">RECENT OPERATIONS</dt>
-        <hr>
-        <section class="py-3 px-3" style="overflow-y:scroll; max-height: 420px;">
-          <ul class="timeline-with-icons">
-            <div class="d-flex justify-content-center">
-              <small class="text-muted mb-2 fw-bold">11 March 2020</small>
-            </div>
-            <li class="timeline-item mb-5">
-              <span class="timeline-icon">
-                <i class='bx bx-play-circle' style="color:#168d42"></i>
-              </span>
-              <div class="shadow-sm p-2">
-                <div class="d-grid gap-1">
-                  <small class="fw-bold">17:37:54 2024-01-03</small>
-                  <small class="fw-bold"><i class='bx bx-user me-1' ></i> Asia Kasprzyk</small>
-                </div>
+      <dt style="font-size: 12px;font-weight:bold">RECENT OPERATIONS</dt>
+      <hr>
+      <section class="py-3 px-3" style="overflow-y:scroll; max-height: 420px;">
+        <ul class="timeline-with-icons">
+
+          <div class="d-flex justify-content-center">
+            <small class="text-muted mb-2 fw-bold">11 March 2020</small>
+          </div>
+
+          <li class="timeline-item mb-5">
+            <span class="timeline-icon">
+              <i class='bx bx-play-circle' style="color:#168d42"></i>
+            </span>
+            <div class="shadow-sm p-2">
+              <div class="d-grid gap-1">
+                <small class="fw-bold">17:37:54 2024-01-03</small>
+                <small class="fw-bold"><i class='bx bx-user me-1'></i>Asia Kasprzyk</small>
               </div>
-            </li>
-            <div class="d-flex justify-content-center">
-              <small class="text-muted mb-2 fw-bold">10 March 2020</small>
             </div>
-            <li class="timeline-item mb-5">
-              <span class="timeline-icon">
-                <i class='bx bx-pause-circle text-warning' ></i>
-              </span>
-              <div class="shadow-sm p-2">
-                <div class="d-grid gap-1">
-                  <small class="fw-bold">17:37:54 2024-01-03</small>
-                  <small class="fw-bold"><i class='bx bx-user me-1' ></i> Asia Kasprzyk</small>
-                  <small class="fw-bold "> Dinner <i class='bx bx-dish ms-1 text-warning' ></i></small>
-                  <small>Pause time: <span class="fw-bold">1h 30m 56s</span></small>
-                </div>
+          </li>
+
+          <li class="timeline-item mb-5">
+            <span class="timeline-icon">
+              <i class='bx bx-pause-circle text-warning'></i>
+            </span>
+            <div class="shadow-sm p-2">
+              <div class="d-grid gap-1">
+                <small class="fw-bold">17:37:54 2024-01-03</small>
+                <small class="fw-bold"><i class='bx bx-user me-1'></i>Asia Kasprzyk</small>
+                <small class="fw-bold">Dinner<i class='bx bx-dish ms-1 text-warning'></i></small>
+                <small>Pause time: <span class="fw-bold">1h 30m 56s</span></small>
               </div>
-            </li>
-        
-            <div class="d-flex justify-content-center">
-              <small class="text-muted mb-2 fw-bold">09 March 2020</small>
             </div>
-            <li class="timeline-item mb-5">
-              <span class="timeline-icon">
-                <i class='bx bx-stop-circle text-danger' ></i>
-              </span>
-              <div class="shadow-sm p-2">
-                <div class="d-grid gap-1">
-                  <small class="fw-bold">17:37:54 2024-01-03</small>
-                  <small class="fw-bold"><i class='bx bx-user me-1' ></i> Asia Kasprzyk</small>
-                  <small>Working time (WT): <span class="fw-bold">4h 30m 56s</span></small>
-                </div>
+          </li>
+
+          <li class="timeline-item mb-5">
+            <span class="timeline-icon">
+              <i class='bx bx-stop-circle text-danger'></i>
+            </span>
+            <div class="shadow-sm p-2">
+              <div class="d-grid gap-1">
+                <small class="fw-bold">17:37:54 2024-01-03</small>
+                <small class="fw-bold"><i class='bx bx-user me-1'></i>Asia Kasprzyk</small>
+                <small>Working time (WT): <span class="fw-bold">4h 30m 56s</span></small>
               </div>
-            </li>
-        
-            <div class="d-flex justify-content-center">
-              <small class="text-muted mb-2 fw-bold">08 March 2020</small>
             </div>
-            <li class="timeline-item mb-5">
-              <span class="timeline-icon">
-                <i class='bx bx-pause-circle text-warning' ></i>
-              </span>
-              <div class="shadow-sm p-2">
-                <div class="d-grid gap-1">
-                  <small class="fw-bold">17:37:54 2024-01-03</small>
-                  <small class="fw-bold"><i class='bx bx-user me-1' ></i> Asia Kasprzyk</small>
-                  <small class="fw-bold "> Dinner <i class='bx bx-dish ms-1 text-warning' ></i></small>
-                  <small>Pause time: <span class="fw-bold">1h 30m 56s</span></small>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </section>
-        
+          </li>
+        </ul>
+      </section>
     </div>
   </div>
 </div>

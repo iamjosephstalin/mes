@@ -1,6 +1,6 @@
 @php
-$isMenu = false;
-$navbarHideToggle = false;
+$isMenu = auth()->user()->role->user_type_id == 1 ? true : false;
+  $navbarHideToggle = false;
 @endphp
 
 @extends('layouts/contentNavbarLayout')

@@ -98,7 +98,10 @@ class ClockHistoryController extends Controller
         $difference->i,
         $difference->s
       );
-      $request->merge(['working_time' => $formattedDifference]);
+      $workingTime = $clockHistory->pause_time
+        ? $this->subtractTimes($formattedDifference, $clockHistory->pause_time)
+        : $formattedDifference;
+      $request->merge(['working_time' => $workingTime]);
       $clockHistory->update($request->all());
       return redirect()
         ->route($route)
@@ -233,19 +236,23 @@ class ClockHistoryController extends Controller
       $pauseStart = Carbon::parse($clockPauseHistory->pause_start);
       $pauseStop = $now;
       $difference = $pauseStart->diff($pauseStop);
-      $formattedDifference = sprintf(
+      $clockPauseHistoryPauseTime = sprintf(
         '%02d:%02d:%02d',
         $difference->h + $difference->days * 24,
         $difference->i,
         $difference->s
       );
+      $history = ClockHistory::find($request->clock_history_id);
+      $historyPauseTime = $history->pause_time
+        ? $this->addTimes($history->pause_time, $clockPauseHistoryPauseTime)
+        : $clockPauseHistoryPauseTime;
       $clockPauseHistory->update([
         'pause_stop' => $now,
-        'pause_time' => $formattedDifference,
+        'pause_time' => $clockPauseHistoryPauseTime,
       ]);
-      $history = ClockHistory::find($request->clock_history_id);
       $history->update([
         'in_pause' => false,
+        'pause_time' => $historyPauseTime,
       ]);
       return redirect()
         ->route('clock-in-out-view')
@@ -255,5 +262,36 @@ class ClockHistoryController extends Controller
         ->route('clock-in-out-view')
         ->withErrors('An error occurred while finishing the pause.');
     }
+  }
+
+  public function timeToSeconds($time)
+  {
+    list($hours, $minutes, $seconds) = explode(':', $time);
+    return $hours * 3600 + $minutes * 60 + $seconds;
+  }
+
+  public function secondsToTime($seconds)
+  {
+    $hours = floor($seconds / 3600);
+    $minutes = floor(($seconds % 3600) / 60);
+    $seconds = $seconds % 60;
+
+    return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+  }
+
+  public function addTimes($time1, $time2)
+  {
+    $seconds1 = $this->timeToSeconds($time1);
+    $seconds2 = $this->timeToSeconds($time2);
+    $totalSeconds = $seconds1 + $seconds2;
+    return $this->secondsToTime($totalSeconds);
+  }
+
+  public function subtractTimes($time1, $time2)
+  {
+    $seconds1 = $this->timeToSeconds($time1);
+    $seconds2 = $this->timeToSeconds($time2);
+    $totalSeconds = $seconds1 - $seconds2;
+    return $this->secondsToTime($totalSeconds);
   }
 }
