@@ -49,6 +49,7 @@ use App\Http\Controllers\roles\RoleController;
 use App\Http\Controllers\api_keys\ApiKeyController;
 use App\Http\Controllers\clients\ClientsController;
 use App\Http\Controllers\clock_history\ClockHistoryController;
+use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\tags\TagsController;
 use App\Http\Controllers\users\UserController;
 use App\Http\Controllers\users\UserDashboardController;
@@ -176,4 +177,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/pause-work', [ClockHistoryController::class, 'pauseWork'])->name('pause-work');
   Route::post('/start-pause', [ClockHistoryController::class, 'startPause'])->name('start-pause');
   Route::post('/end-pause', [ClockHistoryController::class, 'endPause'])->name('end-pause');
+
+   // Dashboard
+   Route::resource('/dashboard', DashboardController::class);
 });

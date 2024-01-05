@@ -1,6 +1,12 @@
 {
   "menu": [
     {
+      "url": "/dashboard",
+      "name": "Dashboard",
+      "icon": "menu-icon tf-icons bx bxs-dashboard",
+      "slug": "/dashboard"
+    },
+    {
       "url": "/users",
       "name": "Users",
       "icon": "menu-icon tf-icons bx bxs-user",
