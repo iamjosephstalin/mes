@@ -20,7 +20,10 @@
     <div class="row mb-4">
         <div class="col-12 p-3 d-flex justify-content-between " style="background-color: #d9e1e7">
             <span class="fw-bold fs-5">Production - monthly report : 2024-01</span>
-            <button class="btn btn-primary rounded-pill"><i class='bx bxs-calendar'></i> switch to daily</button>
+            <div class="d-flex column-gap-2">
+                <button class="btn btn-primary rounded-pill"><i class='bx bxs-calendar me-1'></i> Switch to daily</button>
+                <button class="btn btn-primary rounded-pill"><i class='bx bxs-printer me-1'></i> Print</button>
+            </div>
         </div>
     </div>
     <div class="row mb-4">
@@ -122,51 +125,53 @@
 
     <div class="row mb-4">
         <div class="col-12">
-            <table class="table table-striped table-bordered">
-                <thead>
-                  <tr>
-                    <th>Worker</th>
-                    <th>Time at work</th>
-                    <th>Clock-out</th>
-                    <th>Pauses</th>
-                    <th>Work time</th>
-                    <th>Work time on tasks with norm</th>
-                    <th>Estimated working time</th>
-                    <th>Productivity</th>
-                    <th>Workers efficiency</th>
-                    <th>Pauses</th>
-                    <th>Deficiencies</th>
-                  </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                 <tr>
-                    <td>Patrycja Kowalska</td>
-                    <td>23:59:21</td>
-                    <td>23:59:21</td>
-                    <td>0</td>
-                    <td>10</td>
-                    <td>26</td>
-                    <td>89</td>
-                    <td>0</td>
-                    <td>-</td>
-                    <td>56</td>
-                    <td>87</td>
-                 </tr>
-                 <tr>
-                    <td>Patrycja Kowalska</td>
-                    <td>23:59:21</td>
-                    <td>23:59:21</td>
-                    <td>0</td>
-                    <td>10</td>
-                    <td>26</td>
-                    <td>89</td>
-                    <td>0</td>
-                    <td>-</td>
-                    <td>56</td>
-                    <td>87</td>
-                 </tr>
-                </tbody>
-              </table>
+            <div class="table-responsive text-nowrap">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Worker</th>
+                        <th>Time at work</th>
+                        <th>Clock-out</th>
+                        <th>Pauses</th>
+                        <th>Work time</th>
+                        <th>Work time on tasks with norm</th>
+                        <th>Estimated working time</th>
+                        <th>Productivity</th>
+                        <th>Workers efficiency</th>
+                        <th>Pauses</th>
+                        <th>Deficiencies</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                    <tr>
+                        <td>Patrycja Kowalska</td>
+                        <td>23:59:21</td>
+                        <td>23:59:21</td>
+                        <td>0</td>
+                        <td>10</td>
+                        <td>26</td>
+                        <td>89</td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td>56</td>
+                        <td>87</td>
+                    </tr>
+                    <tr>
+                        <td>Patrycja Kowalska</td>
+                        <td>23:59:21</td>
+                        <td>23:59:21</td>
+                        <td>0</td>
+                        <td>10</td>
+                        <td>26</td>
+                        <td>89</td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td>56</td>
+                        <td>87</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -192,48 +197,50 @@
 
     <div class="row mb-4">
         <div class="col-12">
-            <table class="table table-striped table-bordered">
-                <thead>
-                  <tr>
-                    <th>Machine/Operation</th>
-                    <th>Work time</th>
-                    <th>Work time on tasks with norm</th>
-                    <th>Setup time</th>
-                    <th>Estimated working time</th>
-                    <th>Quantity</th>
-                    <th>Pcs/h</th>
-                    <th>Efficiency</th>
-                    <th>Settings</th>
-                    <th>Deficiencies</th>
-                  </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                 <tr>
-                    <td>Patrycja Kowalska</td>
-                    <td>23:59:21</td>
-                    <td>23:59:21</td>
-                    <td>0</td>
-                    <td>10</td>
-                    <td>26</td>
-                    <td>89</td>
-                    <td>0</td>
-                    <td>-</td>
-                    <td>56</td>
-                 </tr>
-                 <tr>
-                    <td>Patrycja Kowalska</td>
-                    <td>23:59:21</td>
-                    <td>23:59:21</td>
-                    <td>0</td>
-                    <td>10</td>
-                    <td>26</td>
-                    <td>89</td>
-                    <td>0</td>
-                    <td>-</td>
-                    <td>56</td>
-                 </tr>
-                </tbody>
-              </table>
+            <div class="table-responsive text-nowrap">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Machine/Operation</th>
+                        <th>Work time</th>
+                        <th>Work time on tasks with norm</th>
+                        <th>Setup time</th>
+                        <th>Estimated working time</th>
+                        <th>Quantity</th>
+                        <th>Pcs/h</th>
+                        <th>Efficiency</th>
+                        <th>Settings</th>
+                        <th>Deficiencies</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                    <tr>
+                        <td>Patrycja Kowalska</td>
+                        <td>23:59:21</td>
+                        <td>23:59:21</td>
+                        <td>0</td>
+                        <td>10</td>
+                        <td>26</td>
+                        <td>89</td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td>56</td>
+                    </tr>
+                    <tr>
+                        <td>Patrycja Kowalska</td>
+                        <td>23:59:21</td>
+                        <td>23:59:21</td>
+                        <td>0</td>
+                        <td>10</td>
+                        <td>26</td>
+                        <td>89</td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td>56</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -252,48 +259,50 @@
 
     <div class="row mb-4">
         <div class="col-12">
-            <table class="table table-striped table-bordered">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Time at work</th>
-                    <th>Pauses</th>
-                    <th>Work time</th>
-                    <th>Work time on estimated norm</th>
-                    <th>Estimated working time</th>
-                    <th>Productivity</th>
-                    <th>Workers efficiency</th>
-                    <th>Pauses</th>
-                    <th>Deficiencies</th>
-                  </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                 <tr>
-                    <td>Patrycja Kowalska</td>
-                    <td>23:59:21</td>
-                    <td>23:59:21</td>
-                    <td>0</td>
-                    <td>10</td>
-                    <td>26</td>
-                    <td>89</td>
-                    <td>0</td>
-                    <td>-</td>
-                    <td>56</td>
-                 </tr>
-                 <tr>
-                    <td>Patrycja Kowalska</td>
-                    <td>23:59:21</td>
-                    <td>23:59:21</td>
-                    <td>0</td>
-                    <td>10</td>
-                    <td>26</td>
-                    <td>89</td>
-                    <td>0</td>
-                    <td>-</td>
-                    <td>56</td>
-                 </tr>
-                </tbody>
-              </table>
+            <div class="table-responsive text-nowrap">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time at work</th>
+                        <th>Pauses</th>
+                        <th>Work time</th>
+                        <th>Work time on estimated norm</th>
+                        <th>Estimated working time</th>
+                        <th>Productivity</th>
+                        <th>Workers efficiency</th>
+                        <th>Pauses</th>
+                        <th>Deficiencies</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                    <tr>
+                        <td>Patrycja Kowalska</td>
+                        <td>23:59:21</td>
+                        <td>23:59:21</td>
+                        <td>0</td>
+                        <td>10</td>
+                        <td>26</td>
+                        <td>89</td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td>56</td>
+                    </tr>
+                    <tr>
+                        <td>Patrycja Kowalska</td>
+                        <td>23:59:21</td>
+                        <td>23:59:21</td>
+                        <td>0</td>
+                        <td>10</td>
+                        <td>26</td>
+                        <td>89</td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td>56</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

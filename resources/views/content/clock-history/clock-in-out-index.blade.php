@@ -1,11 +1,12 @@
 @php
   $isMenu = auth()->user()->role->user_type_id == 1 ? true : false;
   $navbarHideToggle = false;
-  $isNavbar = false;
   $container = 'container-fluid p-0';
   $containerNav = 'container-fluid';
   $isContainerPad = false;
-  $overflow = "style=overflow:hidden"
+  $overflow = "style=overflow:hidden";
+  $navbarFull = true;
+  $closeViewBtn = true;
 @endphp
 
 @extends('layouts/contentNavbarLayout')
@@ -18,13 +19,13 @@
 
 @section('content')
 <div>
-  <div class="row w-100 m-0 p-2 border-bottom border-secondary">
+  {{-- <div class="row w-100 m-0 p-2 border-bottom border-secondary">
     <div class="d-flex justify-content-end ">
       <a type="button" class="btn rounded-pill btn-primary" href="{{route('user-dashboard.index')}}">
         <span class="tf-icons bx bx-low-vision me-1"></span>Close view
       </a>
     </div>
-  </div>
+  </div> --}}
   <div class="row w-100" style="height: 100vh">
     <div class="col-md-6" style="padding-top: 5%;">
       <div class="d-grid gap-4 p-5">
