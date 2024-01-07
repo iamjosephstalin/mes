@@ -7,6 +7,7 @@
   $overflow = "style=overflow:hidden";
   $navbarFull = true;
   $closeViewBtn = true;
+  $date = date('d F Y');
 @endphp
 
 @extends('layouts/contentNavbarLayout')
@@ -29,9 +30,9 @@
   <div class="row w-100" style="height: 100vh">
     <div class="col-md-6" style="padding-top: 5%;">
       <div class="d-grid gap-4 p-5">
-        <button type="button" class="btn btn-success py-4 fs-5" style="background-color:#168d42" id="clockInCanvasBtn"><i class='bx bx-play-circle fs-3 me-1'></i>CLOCK-IN</button>
+        <button type="button" class="btn btn-success py-4 fs-5" style="background-color:#168d42" id="clockInCanvasBtn"><i class='bx bx-arrow-to-right fs-3 me-1'></i>CLOCK-IN</button>
         <button type="button" class="btn btn-secondary py-4 fs-5" id="pauseWorkCanvasBtn"><i class='bx bx-pause-circle fs-3 me-1'></i>PAUSE WORK</button>
-        <button type="button" class="btn btn-danger py-4 fs-5" style="background-color:#cb361c" id="clockOutCanvasBtn"><i class='bx bx-stop-circle fs-3 me-1'></i>CLOCK-OUT</button>
+        <button type="button" class="btn btn-danger py-4 fs-5" style="background-color:#cb361c" id="clockOutCanvasBtn"><i class='bx bx-arrow-to-left fs-3 me-1'></i>CLOCK-OUT</button>
       </div>
     </div>
     <div class="col-md-6" style="box-shadow:-6px 0 10px -4px #999">
@@ -50,49 +51,114 @@
       <hr>
       <section class="py-3 px-3" style="overflow-y:scroll; max-height: 420px;">
         <ul class="timeline-with-icons">
-
-          <div class="d-flex justify-content-center">
-            <small class="text-muted mb-2 fw-bold">11 March 2020</small>
+          <div class="d-flex justify-content-center mb-5">
+            <small class="text-muted mb-2 fw-bold">{{ $date }}</small>
           </div>
-
-          <li class="timeline-item mb-5">
-            <span class="timeline-icon">
-              <i class='bx bx-play-circle' style="color:#168d42"></i>
-            </span>
-            <div class="shadow-sm p-2">
-              <div class="d-grid gap-1">
-                <small class="fw-bold">17:37:54 2024-01-03</small>
-                <small class="fw-bold"><i class='bx bx-user me-1'></i>Asia Kasprzyk</small>
-              </div>
-            </div>
-          </li>
-
-          <li class="timeline-item mb-5">
-            <span class="timeline-icon">
-              <i class='bx bx-pause-circle text-warning'></i>
-            </span>
-            <div class="shadow-sm p-2">
-              <div class="d-grid gap-1">
-                <small class="fw-bold">17:37:54 2024-01-03</small>
-                <small class="fw-bold"><i class='bx bx-user me-1'></i>Asia Kasprzyk</small>
-                <small class="fw-bold">Dinner<i class='bx bx-dish ms-1 text-warning'></i></small>
-                <small>Pause time: <span class="fw-bold">1h 30m 56s</span></small>
-              </div>
-            </div>
-          </li>
-
-          <li class="timeline-item mb-5">
-            <span class="timeline-icon">
-              <i class='bx bx-stop-circle text-danger'></i>
-            </span>
-            <div class="shadow-sm p-2">
-              <div class="d-grid gap-1">
-                <small class="fw-bold">17:37:54 2024-01-03</small>
-                <small class="fw-bold"><i class='bx bx-user me-1'></i>Asia Kasprzyk</small>
-                <small>Working time (WT): <span class="fw-bold">4h 30m 56s</span></small>
-              </div>
-            </div>
-          </li>
+          @foreach($histories as $history)
+            @if($history->clock_out && $history->working_time)
+              @if($date != date('d F Y', strtotime($history->clock_out)))
+                <?php $date = date('d F Y', strtotime($history->clock_out)); ?>
+                <div class="d-flex justify-content-center mb-5">
+                  <small class="text-muted mb-2 fw-bold">{{ $date }}</small>
+                </div>
+              @endif
+              <li class="timeline-item mb-5">
+                <span class="timeline-icon">
+                  <i class='bx bx-arrow-to-left text-danger'></i>
+                </span>
+                <div class="shadow-sm p-2">
+                  <div class="d-grid gap-1">
+                    <small class="fw-bold">{{ Carbon\Carbon::parse($history->clock_out)->format('H:i:s Y-m-d') }}</small>
+                    <small class="fw-bold">
+                      <i class='bx bx-user me-1'></i>{{ $history->user->name}}
+                      @if($history->clock_out_comment)
+                        <i class='bx bx-comment ms-1' data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $history->clock_out_comment }}"></i>
+                      @endif
+                    </small>
+                     <?php
+                     list($hours, $minutes, $seconds) = explode(':', $history->working_time);
+                     $wt = sprintf('%dh %02dm %02ds', $hours, $minutes, $seconds);
+                     ?>
+                    <small>Working time (WT): <span class="fw-bold">{{ $wt}}</span></small>
+                  </div>
+                </div>
+              </li>
+            @endif
+            @foreach($history->pause as $pause)
+              @if($pause->pause_stop && $pause->pause_time)
+                @if($date != date('d F Y', strtotime($pause->pause_stop)))
+                  <?php $date = date('d F Y', strtotime($pause->pause_stop)); ?>
+                  <div class="d-flex justify-content-center mb-5">
+                    <small class="text-muted mb-2 fw-bold">{{ $date }}</small>
+                  </div>
+                @endif
+                <li class="timeline-item mb-5">
+                  <span class="timeline-icon">
+                    <i class='bx bx-pause-circle text-warning'></i>
+                  </span>
+                  <div class="shadow-sm p-2">
+                    <div class="d-grid gap-1">
+                      <small class="fw-bold">{{ Carbon\Carbon::parse($pause->pause_stop)->format('H:i:s Y-m-d') }}</small>
+                      <small class="fw-bold"><i class='bx bx-user me-1'></i>{{ $history->user->name }}</small>
+                      <small class="fw-bold">
+                        <span class="text-danger">Pause :</span> {{ $pause->reason }}
+                      </small>
+                      <?php
+                      list($hours, $minutes, $seconds) = explode(':', $pause->pause_time);
+                      $pt = sprintf('%dh %02dm %02ds', $hours, $minutes, $seconds);
+                      ?>
+                      <small>Pause time: <span class="fw-bold">{{ $pt }}</span></small>
+                    </div>
+                  </div>
+                </li>
+              @endif
+              @if($pause->pause_start)
+               @if($date != date('d F Y', strtotime($pause->pause_start)))
+                  <?php $date = date('d F Y', strtotime($pause->pause_start)); ?>
+                  <div class="d-flex justify-content-center mb-5">
+                    <small class="text-muted mb-2 fw-bold">{{ $date }}</small>
+                  </div>
+                @endif
+                <li class="timeline-item mb-5">
+                  <span class="timeline-icon">
+                    <i class='bx bx-pause-circle text-secondary'></i>
+                  </span>
+                  <div class="shadow-sm p-2">
+                    <div class="d-grid gap-1">
+                      <small class="fw-bold">{{ Carbon\Carbon::parse($pause->pause_start)->format('H:i:s Y-m-d') }}</small>
+                      <small class="fw-bold"><i class='bx bx-user me-1'></i>{{ $history->user->name }}</small>
+                      <small class="fw-bold">
+                        <span class="text-success">Pause :</span> {{ $pause->reason }}
+                      </small>
+                    </div>
+                  </div>
+                </li>
+              @endif
+            @endforeach
+            @if($history->clock_in)
+              @if($date != date('d F Y', strtotime($history->clock_in)))
+                <?php $date = date('d F Y', strtotime($history->clock_in)); ?>
+                <div class="d-flex justify-content-center mb-5">
+                  <small class="text-muted mb-2 fw-bold">{{ $date }}</small>
+                </div>
+              @endif
+              <li class="timeline-item mb-5">
+                <span class="timeline-icon">
+                  <i class='bx bx-arrow-to-right' style="color:#168d42"></i>
+                </span>
+                <div class="shadow-sm p-2">
+                  <div class="d-grid gap-1">
+                    <small class="fw-bold">{{ Carbon\Carbon::parse($history->clock_in)->format('H:i:s Y-m-d') }}</small>
+                    <small class="fw-bold"><i class='bx bx-user me-1'></i>{{ $history->user->name }}
+                    @if($history->clock_in_comment)
+                      <i class='bx bx-comment ms-1' data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $history->clock_in_comment }}"></i>
+                    @endif
+                  </small>
+                  </div>
+                </div>
+              </li>
+            @endif
+          @endforeach
         </ul>
       </section>
     </div>

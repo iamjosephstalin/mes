@@ -126,7 +126,18 @@ class ClockHistoryController extends Controller
 
   public function clockInOutView()
   {
-    return view('content.clock-history.clock-in-out-index');
+    $loginUserId = auth()->user()->id;
+    $histories = ClockHistory::whereNull('deleted_at')
+      ->where('user_id', $loginUserId)
+      ->with([
+        'user',
+        'pause' => function ($query) {
+          $query->orderBy('id', 'desc');
+        },
+      ])
+      ->orderBy('id', 'desc')
+      ->get();
+    return view('content.clock-history.clock-in-out-index', ['histories' => $histories]);
   }
 
   /**
@@ -176,19 +187,19 @@ class ClockHistoryController extends Controller
   public function pauseWork(): JsonResponse
   {
     try {
-      $loginUserId = auth()->user()->id;
+      $loginUserId = auth()->id();
       $clockHistory = ClockHistory::where('in_work', true)
         ->where('user_id', $loginUserId)
         ->whereNull('deleted_at')
-        ->orderBy('id', 'desc')
+        ->latest('id')
         ->first();
-      $clockPauseHistory = null;
-      if ($clockHistory->in_pause) {
-        $clockPauseHistory = ClockPauseHistory::where('clock_history_id', $clockHistory->id)
-          ->whereNull('deleted_at')
-          ->orderBy('id', 'desc')
-          ->first();
-      }
+      $clockPauseHistory =
+        $clockHistory && $clockHistory->in_pause
+          ? ClockPauseHistory::where('clock_history_id', $clockHistory->id)
+            ->whereNull('deleted_at')
+            ->latest('id')
+            ->first()
+          : null;
       $responseData = [
         'clockHistory' => $clockHistory,
         'clockPauseHistory' => $clockPauseHistory,

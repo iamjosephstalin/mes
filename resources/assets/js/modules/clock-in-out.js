@@ -63,8 +63,6 @@ $('#clockOutCanvasBtn').on('click', function () {
 $('#pauseWorkCanvasBtn').on('click', function () {
   axios.get(`/pause-work`).then(res => {
     let { clockHistory, clockPauseHistory } = res.data;
-    console.log(clockHistory);
-    console.log(clockPauseHistory);
     if (clockHistory !== null) {
       if (clockHistory.in_pause && clockPauseHistory != null) {
         $('#end_clock_history_id').val(clockHistory.id);
