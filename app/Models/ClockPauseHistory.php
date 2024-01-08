@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ClockHistory;
 
 class ClockPauseHistory extends Model
 {
@@ -19,4 +20,9 @@ class ClockPauseHistory extends Model
     'updated_at' => 'datetime:Y-m-d H:i:s',
     'deleted_at' => 'datetime:Y-m-d H:i:s',
   ];
+
+  public function clockHistory()
+  {
+    return $this->belongsTo(ClockHistory::class, 'clock_history_id');
+  }
 }

@@ -2,6 +2,7 @@
 $containerNav = $containerNav ?? 'container-fluid';
 $navbarDetached = ($navbarDetached ?? '');
 $closeViewBtn = ($closeViewBtn ?? false);
+$clockHistoryBtn = ($clockHistoryBtn ?? false);
 @endphp
 
 <!-- Navbar -->
@@ -44,6 +45,11 @@ $closeViewBtn = ($closeViewBtn ?? false);
           @if(isset($closeViewBtn) && $closeViewBtn)
           <a type="button" class="btn rounded-pill btn-primary" style="height: 40px" href="{{route('user-dashboard.index')}}">
             <span class="tf-icons bx bx-low-vision me-1"></span>Close view
+          </a>
+          @endif
+          @if(isset($clockHistoryBtn) && $clockHistoryBtn)
+          <a type="button" class="btn rounded-pill btn-primary" style="height: 40px" href="{{route('clock-history.index')}}">
+            <span class="tf-icons bx bxs-time-five me-1"></span>Clock-in/Clock-out History
           </a>
           @endif
           <!-- /Search -->

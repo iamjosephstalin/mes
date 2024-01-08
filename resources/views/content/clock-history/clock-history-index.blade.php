@@ -3,6 +3,9 @@
 @section('title', 'Clock-in/Clock-out History')
 
 @section('page-script')
+<script>
+  var users = @json($users);
+</script>
 <script type="module" src="{{ mix('js/modules/clock-history.js') }}"></script>
 @endsection
 

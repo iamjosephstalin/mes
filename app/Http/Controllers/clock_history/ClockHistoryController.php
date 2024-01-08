@@ -11,8 +11,6 @@ use Illuminate\Http\RedirectResponse;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Exception;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\DB;
 
 class ClockHistoryController extends Controller
 {
@@ -304,5 +302,17 @@ class ClockHistoryController extends Controller
     $seconds2 = $this->timeToSeconds($time2);
     $totalSeconds = $seconds1 - $seconds2;
     return $this->secondsToTime($totalSeconds);
+  }
+
+  public function clockPauseHistory()
+  {
+    $pauses = ClockPauseHistory::with(['clockHistory.user'])
+      ->whereNull('deleted_at')
+      ->orderBy('id', 'desc')
+      ->get();
+    $users = User::whereNull('deleted_at')
+      ->where('status', 1)
+      ->get();
+    return view('content.clock-history.clock-pause-history-index', ['pauses' => $pauses, 'users' => $users]);
   }
 }

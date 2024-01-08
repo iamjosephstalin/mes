@@ -52,7 +52,7 @@
       <section class="py-3 px-3" style="overflow-y:scroll; max-height: 420px;">
         <ul class="timeline-with-icons">
           <div class="d-flex justify-content-center mb-5">
-            <small class="text-muted mb-2 fw-bold">{{ $date }}</small>
+            <small class="text-muted mb-2 fw-bold">Today</small>
           </div>
           @foreach($histories as $history)
             @if($history->clock_out && $history->working_time)

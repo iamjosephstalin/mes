@@ -174,10 +174,11 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/clock-in-out', [ClockHistoryController::class, 'clockInOutView'])->name('clock-in-out-view');
   Route::get('/clock-out', [ClockHistoryController::class, 'clockOut'])->name('clock-out');
   Route::get('/clock-in', [ClockHistoryController::class, 'clockIn'])->name('clock-in');
+  Route::get('/clock-pause-history', [ClockHistoryController::class, 'clockPauseHistory'])->name('clock-pause-history');
   Route::get('/pause-work', [ClockHistoryController::class, 'pauseWork'])->name('pause-work');
   Route::post('/start-pause', [ClockHistoryController::class, 'startPause'])->name('start-pause');
   Route::post('/end-pause', [ClockHistoryController::class, 'endPause'])->name('end-pause');
 
-   // Dashboard
-   Route::resource('/dashboard', DashboardController::class);
+  // Dashboard
+  Route::resource('/dashboard', DashboardController::class);
 });
