@@ -127,58 +127,54 @@ Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic')
 //Actual Routes
 
 Route::middleware(['auth'])->group(function () {
-  // roles
-  Route::resource('/roles', RoleController::class);
 
-  // regional settings
+  Route::middleware(['admin'])->group(function () {
 
-  //currency
-  Route::resource('/reg-settings/currencies', CurrencyController::class);
-  Route::post('/reg-settings/currencies/default', [CurrencyController::class, 'updateDefault'])->name(
-    'currency-update-default'
-  );
+    // Admin Routes
+    // roles
+    Route::resource('/roles', RoleController::class);
+    // regional settings
+    //currency
+    Route::resource('/reg-settings/currencies', CurrencyController::class);
+    Route::post('/reg-settings/currencies/default', [CurrencyController::class, 'updateDefault'])->name(
+      'currency-update-default'
+    );
+    //units
+    Route::resource('/reg-settings/units', UnitController::class);
+    Route::post('/reg-settings/units/default', [UnitController::class, 'updateDefault'])->name('unit-update-default');
+    // vat rates
+    Route::resource('/reg-settings/vat-rates', VatController::class);
+    Route::post('/reg-settings/vat-rates/default', [VatController::class, 'updateDefault'])->name(
+      'vat-rate-update-default'
+    );
+    // Machine Operations
+    Route::resource('/machines-operations', MachinesOperationsController::class);
+    // api keys
+    Route::resource('/api-keys', ApiKeyController::class);
+    // Tags
+    Route::resource('/tags', TagsController::class);
+    // Additional Fields
+    Route::resource('/additional-fields', AdditionalFieldsController::class);
+    // Clients
+    Route::resource('/clients', ClientsController::class);
+    // Users
+    Route::resource('/users', UserController::class);
+    // Clock-history
+    Route::resource('/clock-history', ClockHistoryController::class);
+    // Dashboard
+    Route::resource('/dashboard', DashboardController::class);
+  });
+  
 
-  //units
-  Route::resource('/reg-settings/units', UnitController::class);
-  Route::post('/reg-settings/units/default', [UnitController::class, 'updateDefault'])->name('unit-update-default');
-
-  // vat rates
-  Route::resource('/reg-settings/vat-rates', VatController::class);
-  Route::post('/reg-settings/vat-rates/default', [VatController::class, 'updateDefault'])->name(
-    'vat-rate-update-default'
-  );
-
-  // Machine Operations
-  Route::resource('/machines-operations', MachinesOperationsController::class);
-
-  // api keys
-  Route::resource('/api-keys', ApiKeyController::class);
-
-  // Tags
-  Route::resource('/tags', TagsController::class);
-
-  // Additional Fields
-  Route::resource('/additional-fields', AdditionalFieldsController::class);
-
-  // Clients
-  Route::resource('/clients', ClientsController::class);
-
-  // Users
-  Route::resource('/users', UserController::class);
-
-  // Users
-  Route::resource('/user-dashboard', UserDashboardController::class);
-
-  // Clock-history
-  Route::resource('/clock-history', ClockHistoryController::class);
-  Route::get('/clock-in-out', [ClockHistoryController::class, 'clockInOutView'])->name('clock-in-out-view');
-  Route::get('/clock-out', [ClockHistoryController::class, 'clockOut'])->name('clock-out');
-  Route::get('/clock-in', [ClockHistoryController::class, 'clockIn'])->name('clock-in');
-  Route::get('/clock-pause-history', [ClockHistoryController::class, 'clockPauseHistory'])->name('clock-pause-history');
-  Route::get('/pause-work', [ClockHistoryController::class, 'pauseWork'])->name('pause-work');
-  Route::post('/start-pause', [ClockHistoryController::class, 'startPause'])->name('start-pause');
-  Route::post('/end-pause', [ClockHistoryController::class, 'endPause'])->name('end-pause');
-
-  // Dashboard
-  Route::resource('/dashboard', DashboardController::class);
+  //user routes
+   //Dashboard
+   Route::resource('/user-dashboard', UserDashboardController::class);
+   //Clock in/out
+   Route::get('/clock-in-out', [ClockHistoryController::class, 'clockInOutView'])->name('clock-in-out-view');
+   Route::get('/clock-out', [ClockHistoryController::class, 'clockOut'])->name('clock-out');
+   Route::get('/clock-in', [ClockHistoryController::class, 'clockIn'])->name('clock-in');
+   Route::get('/clock-pause-history', [ClockHistoryController::class, 'clockPauseHistory'])->name('clock-pause-history');
+   Route::get('/pause-work', [ClockHistoryController::class, 'pauseWork'])->name('pause-work');
+   Route::post('/start-pause', [ClockHistoryController::class, 'startPause'])->name('start-pause');
+   Route::post('/end-pause', [ClockHistoryController::class, 'endPause'])->name('end-pause');
 });

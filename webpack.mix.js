@@ -109,6 +109,12 @@ jsFiles.forEach(file => {
   mix.js(file, `public/js/modules/${fileName}`);
 });
 
+const cssFiles = glob.sync('resources/assets/css/styles/*.css');
+cssFiles.forEach(cssFile => {
+  const cssFileName = cssFile.split('/').pop(); // Extract the filename
+  mix.css(cssFile, `public/css/styles/${cssFileName}`);
+});
+
 // Libs
 mixAssetsDir('vendor/libs/**/*.js', (src, dest) => mix.js(src, dest));
 mixAssetsDir('vendor/libs/**/!(_)*.scss', (src, dest) =>
