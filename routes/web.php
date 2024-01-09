@@ -159,8 +159,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/clients', ClientsController::class);
     // Users
     Route::resource('/users', UserController::class);
-    // Clock-history
-    Route::resource('/clock-history', ClockHistoryController::class);
+
     // Dashboard
     Route::resource('/dashboard', DashboardController::class);
   });
@@ -177,4 +176,6 @@ Route::middleware(['auth'])->group(function () {
    Route::get('/pause-work', [ClockHistoryController::class, 'pauseWork'])->name('pause-work');
    Route::post('/start-pause', [ClockHistoryController::class, 'startPause'])->name('start-pause');
    Route::post('/end-pause', [ClockHistoryController::class, 'endPause'])->name('end-pause');
+   // Clock-history
+   Route::resource('/clock-history', ClockHistoryController::class);
 });
