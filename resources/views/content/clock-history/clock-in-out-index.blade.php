@@ -77,7 +77,7 @@
                 </span>
                 <div class="shadow-sm p-2">
                   <div class="d-grid gap-1">
-                    <small class="fw-bold">{{ Carbon\Carbon::parse($history->clock_out)->format('H:i:s Y-m-d') }}</small>
+                    <small class="fw-bold">{{ Carbon\Carbon::parse($history->clock_out)->tz('Asia/Kolkata')->format('H:i:s Y-m-d') }}</small>
                     <small class="fw-bold">
                       <i class='bx bx-user me-1'></i>{{ $history->user->name}}
                       @if($history->clock_out_comment)
@@ -107,7 +107,7 @@
                   </span>
                   <div class="shadow-sm p-2">
                     <div class="d-grid gap-1">
-                      <small class="fw-bold">{{ Carbon\Carbon::parse($pause->pause_stop)->format('H:i:s Y-m-d') }}</small>
+                      <small class="fw-bold">{{ Carbon\Carbon::parse($pause->pause_stop)->tz('Asia/Kolkata')->format('H:i:s Y-m-d') }}</small>
                       <small class="fw-bold"><i class='bx bx-user me-1'></i>{{ $history->user->name }}</small>
                       <small class="fw-bold">
                         <span class="text-danger">Pause :</span> {{ $pause->reason }}
@@ -134,7 +134,7 @@
                   </span>
                   <div class="shadow-sm p-2">
                     <div class="d-grid gap-1">
-                      <small class="fw-bold">{{ Carbon\Carbon::parse($pause->pause_start)->format('H:i:s Y-m-d') }}</small>
+                      <small class="fw-bold">{{ Carbon\Carbon::parse($pause->pause_start)->tz('Asia/Kolkata')->format('H:i:s Y-m-d') }}</small>
                       <small class="fw-bold"><i class='bx bx-user me-1'></i>{{ $history->user->name }}</small>
                       <small class="fw-bold">
                         <span class="text-success">Pause :</span> {{ $pause->reason }}
@@ -157,7 +157,7 @@
                 </span>
                 <div class="shadow-sm p-2">
                   <div class="d-grid gap-1">
-                    <small class="fw-bold">{{ Carbon\Carbon::parse($history->clock_in)->format('H:i:s Y-m-d') }}</small>
+                    <small class="fw-bold">{{ Carbon\Carbon::parse($history->clock_in)->tz('Asia/Kolkata')->format('H:i:s Y-m-d') }}</small>
                     <small class="fw-bold"><i class='bx bx-user me-1'></i>{{ $history->user->name }}
                     @if($history->clock_in_comment)
                       <i class='bx bx-comment ms-1' data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $history->clock_in_comment }}"></i>

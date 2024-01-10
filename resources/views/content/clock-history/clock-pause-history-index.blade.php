@@ -39,8 +39,8 @@
         @foreach($pauses as $pause)
           <tr>
             <td>{{ $pause->clockHistory->user->name }}</td>
-            <td>{{ $pause->pause_start }}</td>
-            <td>{{ $pause->pause_stop }}</td>
+            <td>{{ Carbon\Carbon::parse($pause->pause_start)->tz('Asia/Kolkata') }}</td>
+            <td>{{ Carbon\Carbon::parse($pause->pause_stop)->tz('Asia/Kolkata') }}</td>
             <td>{{ $pause->pause_time }}</td>
             <td>{{ $pause->reason }}</td>
             <td>{{ $pause->comment }}</td>

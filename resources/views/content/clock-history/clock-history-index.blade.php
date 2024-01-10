@@ -37,8 +37,8 @@
         @foreach($histories as $history)
           <tr>
             <td>{{ $history->user->name }}</td>
-            <td>{{ $history->clock_in }}</td>
-            <td>{{ $history->clock_out }}</td>
+            <td>{{ Carbon\Carbon::parse($history->clock_in)->tz('Asia/Kolkata') }}</td>
+            <td>{{ Carbon\Carbon::parse($history->clock_out)->tz('Asia/Kolkata') }}</td>
             <td>{{ $history->working_time }}</td>
             <td>{{ $history->pause_time }}</td>
             <td>{{ $history->number_of_pauses }}</td>

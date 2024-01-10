@@ -17,8 +17,8 @@ return new class extends Migration {
         ->foreign('user_id')
         ->references('id')
         ->on('users');
-      $table->timestamp('clock_in');
-      $table->timestamp('clock_out')->nullable(true);
+      $table->string('clock_in');
+      $table->string('clock_out')->nullable(true);
       $table->string('working_time')->nullable(true);
       $table->string('pause_time')->nullable(true);
       $table->boolean('in_pause')->default(false);

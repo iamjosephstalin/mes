@@ -17,8 +17,8 @@ return new class extends Migration {
         ->foreign('clock_history_id')
         ->references('id')
         ->on('clock_history');
-      $table->timestamp('pause_start');
-      $table->timestamp('pause_stop')->nullable(true);
+      $table->string('pause_start');
+      $table->string('pause_stop')->nullable(true);
       $table->string('pause_time')->nullable(true);
       $table->string('reason');
       $table->string('comment')->nullable(true);
