@@ -135,7 +135,19 @@ class ClockHistoryController extends Controller
       ])
       ->orderBy('id', 'desc')
       ->get();
-    return view('content.clock-history.clock-in-out-index', ['histories' => $histories]);
+    $lastHistory = ClockHistory::whereNull('deleted_at')
+      ->where('user_id', $loginUserId)
+      ->with([
+        'pause' => function ($query) {
+          $query->orderBy('id', 'desc')->first();
+        },
+      ])
+      ->orderBy('id', 'desc')
+      ->first();
+    return view('content.clock-history.clock-in-out-index', [
+      'histories' => $histories,
+      'lastHistory' => $lastHistory,
+    ]);
   }
 
   /**
@@ -191,16 +203,8 @@ class ClockHistoryController extends Controller
         ->whereNull('deleted_at')
         ->latest('id')
         ->first();
-      $clockPauseHistory =
-        $clockHistory && $clockHistory->in_pause
-          ? ClockPauseHistory::where('clock_history_id', $clockHistory->id)
-            ->whereNull('deleted_at')
-            ->latest('id')
-            ->first()
-          : null;
       $responseData = [
         'clockHistory' => $clockHistory,
-        'clockPauseHistory' => $clockPauseHistory,
       ];
       return response()->json($responseData, 200);
     } catch (Exception $e) {

@@ -62,16 +62,10 @@ $('#clockOutCanvasBtn').on('click', function () {
 
 $('#pauseWorkCanvasBtn').on('click', function () {
   axios.get(`/pause-work`).then(res => {
-    let { clockHistory, clockPauseHistory } = res.data;
+    let { clockHistory } = res.data;
     if (clockHistory !== null) {
-      if (clockHistory.in_pause && clockPauseHistory != null) {
-        $('#end_clock_history_id').val(clockHistory.id);
-        $('#clock_pause_history_id').val(clockPauseHistory.id);
-        $('#pauseWorkEndCanvas').offcanvas('show');
-      } else {
-        $('#start_clock_history_id').val(clockHistory.id);
-        $('#pauseWorkStartCanvas').offcanvas('show');
-      }
+      $('#start_clock_history_id').val(clockHistory.id);
+      $('#pauseWorkStartCanvas').offcanvas('show');
     } else {
       alert('There are no ongoing tasks to pause at the moment.');
     }

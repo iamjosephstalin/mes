@@ -31,7 +31,16 @@
     <div class="col-md-6" style="padding-top: 5%;">
       <div class="d-grid gap-4 p-5">
         <button type="button" class="btn btn-success py-4 fs-5" style="background-color:#168d42" id="clockInCanvasBtn"><i class='bx bx-arrow-to-right fs-3 me-1'></i>CLOCK-IN</button>
-        <button type="button" class="btn btn-secondary py-4 fs-5" id="pauseWorkCanvasBtn"><i class='bx bx-pause-circle fs-3 me-1'></i>PAUSE WORK</button>
+        @if($lastHistory && $lastHistory->in_pause && $lastHistory->pause && $lastHistory->pause->first())
+         <form action="{{ route('end-pause') }}" method="post">
+            @csrf
+            <button type="submit" class="btn btn-secondary py-4 fs-5 form-control"><i class='bx bx-pause-circle fs-3 me-1'></i>END PAUSE</button>
+            <input type="hidden" id="end_clock_history_id" name="clock_history_id" value="{{ $lastHistory->id }}"/>
+            <input type="hidden" id="clock_pause_history_id" name="clock_pause_history_id" value="{{ optional($lastHistory->pause->first())->id }}"/>
+          </form>
+        @else
+          <button type="button" class="btn btn-secondary py-4 fs-5" id="pauseWorkCanvasBtn"><i class='bx bx-pause-circle fs-3 me-1'></i>PAUSE WORK</button>
+        @endif
         <button type="button" class="btn btn-danger py-4 fs-5" style="background-color:#cb361c" id="clockOutCanvasBtn"><i class='bx bx-arrow-to-left fs-3 me-1'></i>CLOCK-OUT</button>
       </div>
     </div>
@@ -291,30 +300,6 @@
       <button type="submit" class="btn btn-success">START PAUSE</button>
     </div>
     <input type="hidden" id="start_clock_history_id" name="clock_history_id" value=""/>
-  </form>
-</div>
-
-<div class="offcanvas offcanvas-end" tabindex="-1" id="pauseWorkEndCanvas" aria-labelledby="pauseWorkEndCanvasLabel" data-bs-scroll="true">
-  <form action="{{ route('end-pause') }}" method="post">
-    @csrf
-    <div class="offcanvas-header">
-      <h5 id="pauseWorkCanvasLabel" class="offcanvas-title">Pause work</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body my-auto mx-0 flex-grow-0">
-      <div class="row">
-        <div class="col mb-3">
-          <label for="pause_end_name" class="form-label">Worker</label>
-          <input type="text" id="pause_end_name" class="form-control" value="{{auth()->user()->name}}" disabled>
-          <input type="hidden" id="pause_end_user_id" name="user_id" value="{{auth()->user()->id}}"/>
-        </div>
-      </div>
-    </div>
-    <div class="offcanvas-footer text-end mx-4 mb-3">
-      <button type="submit" class="btn btn-success">END PAUSE</button>
-    </div>
-    <input type="hidden" id="end_clock_history_id" name="clock_history_id" value=""/>
-    <input type="hidden" id="clock_pause_history_id" name="clock_pause_history_id" value=""/>
   </form>
 </div>
 
