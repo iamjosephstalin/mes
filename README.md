@@ -1,36 +1,40 @@
 <p align="center"></p>
 
-<p align="center">
-   <a href="https://themeselection.com/item/sneat-free-bootstrap-html-laravel-admin-template/" target="_blank">
-      <img src="https://user-images.githubusercontent.com/749684/150333149-805037bc-8874-4a1f-876a-61a9683f8ef5.png" alt="sneat-logo" width="30px" height="auto">
-   </a>
-</p>
-
 <h1 align="center">
-   <a href="https://themeselection.com/item/sneat-free-bootstrap-html-laravel-admin-template/" target="_blank" align="center">
-      Sneat - Free Bootstrap 5 HTML Laravel Admin Template
-   </a>
+   Manufacturing Execution System (MES)
 </h1>
 
-<p align="center">Most Powerful & Comprehensive Free Bootstrap 5 HTML Laravel Admin Dashboard Template built for developers!</p>
+<p align="center">A comprehensive Manufacturing Execution System designed to digitize and automate production floor paperwork and operations.</p>
 
-![GitHub](https://img.shields.io/github/license/themeselection/sneat-html-laravel-admin-template-free) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/themeselection/sneat-html-laravel-admin-template-free) ![GitHub issues](https://img.shields.io/github/issues/themeselection/sneat-html-laravel-admin-template-free) ![GitHub closed issues](https://img.shields.io/github/issues-closed/themeselection/sneat-html-laravel-admin-template-free) ![Twitter Follow](https://img.shields.io/twitter/follow/Theme_Selection?style=social)
-
-<kbd>[![Sneat - Bootstrap 5 HTML Laravel Admin Template Demo Screenshot](https://cdn.jsdelivr.net/gh/themeselection/ts-assets/sneat/sneat-bootstrap-laravel-admin-template-free/marketing/sneat-bootstrap-laravel-admin-template-free-github.png)](https://themeselection.com/item/sneat-free-bootstrap-html-laravel-admin-template/)</kbd>
+![GitHub](https://img.shields.io/github/license/laravel/laravel)
 
 ## Introduction 🚀
 
-If you’re a developer looking for the most Powerful & comprehensive [**Free Bootstrap 5 HTML Laravel Admin Template**](https://themeselection.com/item/sneat-free-bootstrap-html-laravel-admin-template/) built for developers, rich with features, and highly customizable look no further than Sneat. We’ve followed the highest industry standards to bring you the very best admin template that is not only fast and easy to use but highly scalable. Offering ultimate convenience and flexibility, you’ll be able to build whatever application you want with very little hassle.
+**MES (Manufacturing Execution System)** is a production floor management system that transforms traditional paper-based workflows into a digital, automated solution. This system helps manufacturing organizations track and manage their production operations, employee time tracking, machine operations, client management, and more.
 
-Build premium quality applications with ease. Use our innovative **[Laravel admin template](https://themeselection.com/item/category/laravel-admin-templates/)** to create eye-catching, high-quality WebApps. Your apps will be completely responsive, ensuring they’ll look stunning and function flawlessly on desktops, tablets, and mobile devices.
+### Key Benefits
 
-[View Demo](https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template-free/demo/)
+- **Digital Transformation**: Replace manual paperwork with digital data capture and management
+- **Real-time Tracking**: Monitor production operations, employee time, and machine activities in real-time
+- **Improved Efficiency**: Streamline workflows and reduce administrative overhead
+- **Data Analytics**: Gain insights into production metrics and employee performance
+- **Paperless Operations**: Reduce paper usage and improve data accuracy
+- **Comprehensive Management**: Handle clients, machines, operations, and workers all in one system
+
+### Built With
+
+- **Laravel** ^10.23 - PHP web framework
+- **Laravel Fortify** - Authentication and security
+- **Laravel Sanctum** - API authentication
+- **PHP** ^8.1
+- Modern frontend technologies
+
 
 ## Installation ⚒️
 
-Installing and running Sneat is super easy, please Follow below steps and you will be ready to rock 🤘
+Installing and running the MES application is straightforward. Follow the steps below to get started:
 
-1. Open the terminal in your root directory of Sneat Laravel.
+1. Open the terminal in your root directory of the MES Laravel project.
 2. Use the following command to install the composer
 
 ```bash
@@ -71,141 +75,143 @@ php artisan serve
 yarn prod
 ```
 
-## What's Included 📦
+## Key Features 📦
 
-- Dashboard
-- Layouts
-  - Without menu
-  - Without Navbar
-  - Container
-  - Fluid
-  - Blank
-- Pages
-  - Account Settings
-  - Login
-  - Register
-  - Forgot Password
-  - Error
-  - Under Maintenance
-- Cards
-- User Interface
-  - **All Bootstrap Components**
-- Extended UI
-  - Perfect Scrollbar
-  - Text Divider
-- Boxicon
-- Form Elements
-  - Basic Inputs
-  - Input Groups
-- Form Layout
-  - Vertical Form
-  - Horizontal Form
-- Tables
+### Production Management
+- **Machine Operations**: Track and manage machine operations with hourly rates, shift configurations, and detailed notes
+- **Operations Tracking**: Monitor production operations across different machines and shifts
+- **Multi-Currency Support**: Handle operations with different currencies and pricing
+- **Shift Management**: Configure multiple shifts with hours per pay calculations
 
-## What's in Premium Version 💎
+### Employee Management
+- **Time Tracking**: Employee clock in/out system with detailed history
+- **Pause Tracking**: Monitor and record break times during work shifts
+- **Working Time Calculations**: Automatic calculation of working hours and pause times
+- **Comment System**: Add comments for clock in/out and track additional notes
+- **User Roles**: Role-based access control with multiple user types
 
-| Sneat Free Version                                                                              | Sneat Premium Version                                                                                                                                                                         |
-| ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Demo](https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template-free/demo/) | [Demo](https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo-1/)                                                                                                  |
-| [Download](https://themeselection.com/item/sneat-free-bootstrap-html-laravel-admin-template/)   | [Purchase](https://themeselection.com/item/sneat-bootstrap-laravel-admin-template/)                                                                                                           |
-| Single vertical Menu                                                                            | Vertical Menu + Horizontal Menu                                                                                                                                                               |
-| Simple Light Style                                                                              | Light, Dark & System Style                                                                                                                                                                    |
-| Default Theme                                                                                   | Default, Semi Dark & Bordered Themes                                                                                                                                                          |
-| Fixed Layout(Menu)                                                                              | Fixed & Static Layout(Menu)                                                                                                                                                                   |
-| 1 Simple Dashboard                                                                              | 5 Niche Dashboards                                                                                                                                                                            |
-| -                                                                                               | Multiple Ready to use Application like **Laravel CRUD Application**, Email, Chat, Calendar, Kanban, eCommerce, Academy, Logistics, Invoice, Users List, Users View, Roles and Permission etc. |
-| Simple From Elements                                                                            | Advance form elements, validation & form wizard                                                                                                                                               |
-| Basic Cards                                                                                     | Basic, Advance , Statistics, Analytics, Gamifications and Actions Cards                                                                                                                       |
-| Basic User Interface(Components)                                                                | Advance and Custom User Interfaces(Components)                                                                                                                                                |
-| Two Extended Components                                                                         | Twelve Ready to use Extended Components                                                                                                                                                       |
-| -                                                                                               | Quick Search - Quickly navigate between pages (w/ hotkey support)                                                                                                                             |
-| Basic Pages                                                                                     | Authentication Pages in 2 Variants + Ready to use pages like User Profile, Account Settings,FAQ, Help Center, Pricing, Misc etc.                                                              |
-| -                                                                                               | 3D Characters + Illustrations                                                                                                                                                                 |
-| Basic tables                                                                                    | Advanced & Data tables                                                                                                                                                                        |
-| -                                                                                               | Quick customization using theme config file                                                                                                                                                   |
-| -                                                                                               | Leaflet Maps                                                                                                                                                                                  |
-| 1 Chart Library                                                                                 | 2 Chart Libraries                                                                                                                                                                             |
-| -                                                                                               | Multiple Navbar & Menu Options                                                                                                                                                                |
-| -                                                                                               | Starter-kit                                                                                                                                                                                   |
-| -                                                                                               | **Localization support**                                                                                                                                                                      |
-| -                                                                                               | RTL Support                                                                                                                                                                                   |
-| Regular Support                                                                                 | Priority Support                                                                                                                                                                              |
-| Detailed Documentation                                                                          | Detailed Documentation                                                                                                                                                                        |
+### Client & Business Management
+- **Client Management**: Complete client database with contact information, addresses, and tax details
+- **VAT Rate Configuration**: Configure and manage VAT rates for different regions
+- **Currency Management**: Support for multiple currencies in the system
+- **Unit Management**: Manage different units of measurement
+- **Additional Fields**: Customizable additional fields for flexible data structure
 
-## Documentation 📜
+### Data Organization
+- **Tag System**: Organize data with color-coded tags for easy categorization
+- **Soft Deletes**: Safe data deletion with ability to restore
+- **Audit Trail**: Automatic timestamp tracking for all records
+- **Flexible Schema**: Extensible database design for custom requirements
 
-<!-- If you have live docs then use below line -->
+### Authentication & Security
+- **Laravel Fortify**: Built-in authentication with two-factor authentication support
+- **Laravel Sanctum**: API authentication for secure API access
+- **API Key Management**: Generate and manage API keys for external integrations
+- **Role-based Permissions**: Granular access control based on user roles
 
-Check out our live [Documentation](https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/laravel-introduction.html)
+## Technology Stack 🛠️
+
+- **Backend**: Laravel 10.x
+- **Frontend**: Bootstrap 5 with modern JavaScript
+- **Authentication**: Laravel Fortify with 2FA support
+- **API**: Laravel Sanctum for token-based authentication
+- **Database**: MySQL/PostgreSQL compatible
+- **Language**: PHP 8.1+
 
 ## Browser Support 🖥️
 
 At present, we officially aim to support the last two versions of the following browsers:
 
 - Chrome (latest)
-- FireFox (latest)
+- Firefox (latest)
 - Safari (latest)
 - Microsoft Edge (latest)
 - Opera (latest)
 
-## Useful Links 🎁
+## System Requirements 📋
 
-- [Freebies](https://themeselection.com/item/category/freebies/)
-- [Download Free Admin Templates](https://themeselection.com/item/category/free-admin-templates/)
-- [Bootstrap 5 CheatSheet](https://bootstrap-cheatsheet.themeselection.com/)
+### Minimum Requirements
+- **PHP**: 8.1 or higher
+- **Composer**: Latest version
+- **Node.js**: 16.x or higher
+- **Database**: MySQL 5.7+ or PostgreSQL 10+
 
-## Support 👨‍💻
+### Recommended Requirements
+- **PHP**: 8.2 or higher
+- **Memory**: 256MB or more
+- **Database**: MySQL 8.0+ or PostgreSQL 13+
 
-We use GitHub issues as support tickets to manage Item support.
+## Usage 💡
 
-1. In order to raise the GitHub issue, you must have a GitHub account. [Raise an Issue](https://github.com/themeselection/sneat-html-laravel-admin-template-free/issues)
+### Setting Up Database
 
-## License ©
+1. Create a MySQL/PostgreSQL database for the application
+2. Configure your `.env` file with database credentials:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
 
-- Copyright © [ThemeSelection](https://themeselection.com/)
-- Licensed under [MIT](LICENSE)
+3. Run migrations to set up the database schema:
+```bash
+php artisan migrate
+```
+
+4. (Optional) Seed the database with initial data:
+```bash
+php artisan db:seed
+```
+
+### Accessing the Application
+
+Once the application is running:
+1. Navigate to `http://localhost:8000` (or your configured port)
+2. Register a new account or use existing credentials
+3. Access the dashboard to start managing your production operations
+
+## Project Structure 📁
+
+```
+mes/
+├── app/
+│   ├── Models/           # Eloquent models
+│   ├── Http/
+│   │   ├── Controllers/  # Application controllers
+│   │   └── Middleware/   # Custom middleware
+│   └── Actions/          # Action classes
+├── database/
+│   ├── migrations/       # Database migrations
+│   └── seeders/         # Database seeders
+├── resources/
+│   ├── views/           # Blade templates
+│   ├── css/             # Stylesheets
+│   └── js/              # JavaScript files
+├── routes/              # Application routes
+└── config/             # Configuration files
+```
 
 ## Contributing 🦸
 
-Contribution are always welcome and recommended! Here is how:
+Contributions are always welcome! Here's how you can help:
 
-- Fork the repository ([here is the guide](https://docs.github.com/en/get-started/quickstart/fork-a-repo)).
-- Clone to your machine `git clone https://github.com/YOUR_USERNAME/REPO_NAME` Make your changes
-- Create a pull request
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
 
-### Contribution Requirements 🧰
+### Contribution Guidelines
 
-- When you contribute, you agree to give a non-exclusive license to ThemeSelection to use that contribution in any context as we (ThemeSelection) see appropriate.
-- If you use content provided by another party, it must be appropriately licensed using an open-source license.
-- Contributions are only accepted through Github pull requests.
-- Finally, the contributed code must work in all supported browsers (see above for browser support).
+- Follow PSR-12 coding standards
+- Write clear commit messages
+- Add tests for new features
+- Update documentation as needed
+- Ensure all tests pass before submitting
 
-## Creators 😇
+## License ©
 
-- [ThemeSelection](https://themeselection.com)
-
-## Changelog 📆
-
-Please refer to the [CHANGELOG](CHANGELOG.md) file. We will add detailed release notes to each new release.
-
-## NOTE 🏷️
-
-**We request you to keep the ThemeSelection credit link in the footer section.**
-
-## Looking For Premium Admin Templates ?? 👀
-
-**[ThemeSelection](https://themeselection.com/)** provides Selected high quality, modern design, professional and easy-to-use Free and Premium [Bootstrap Admin Templates](https://themeselection.com/item/category/bootstrap-admin-templates/), [VueJS Admin Templates](https://themeselection.com/item/category/vuejs-admin-templates/), [Laravel Admin Templates](https://themeselection.com/item/category/laravel-admin-templates/), HTML Themes, and [Free UI Kits](https://themeselection.com/item/category/free-ui-kits/) to create your applications faster!.
-
-If you want to Download [Free Admin Templates](https://themeselection.com/item/category/free-ui-kits/) like Materio then do visit [ThemeSelection](https://themeselection.com/).
-
-## Other variants
-
-- [html variant]({https://themeselection.com/item/sneat-free-bootstrap-html-admin-template/})
-<!-- Add others here -->
-
-## Social Media :earth_africa:
-
-- Twitter : [https://twitter.com/Theme_Selection](https://twitter.com/Theme_Selection)
-- Facebook : [https://www.facebook.com/ThemeSelections/](https://www.facebook.com/ThemeSelections/)
-- Pinterest : [https://pinterest.com/themeselect/](https://pinterest.com/themeselect/)
-- Instagram : [https://www.instagram.com/themeselection/](https://www.instagram.com/themeselection/)
+- Licensed under [MIT](LICENSE)
